@@ -8,7 +8,7 @@ namespace Order
         private readonly string _onlyDigitsCpf;
         public readonly bool IsValid;
 
-        private Cpf(string value)
+        public Cpf(string value)
         {
             _value = value;
             _onlyDigitsCpf = string.Empty;

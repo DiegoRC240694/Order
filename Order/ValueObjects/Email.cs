@@ -4,7 +4,7 @@ namespace Order
 {
     public struct Email
     {
-        private readonly string _value;
+        public readonly string _value;
         public readonly bool IsValid;
 
         private Email(string value)

@@ -24,31 +24,48 @@ namespace Order
                 return age;
             }
         }
+        [Required(ErrorMessage = "CPF obrigatório.")]
+        [RegularExpression("([0-9]+)", ErrorMessage = "CPF somente aceita valores numéricos.")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 dígitos.")]
         public Cpf Cpf { get; set; }
         public Email Email { get; set; }
 
-        public Person(string firstName, string lastName, DateTime birthDate, Cpf cpf, Email email)
-        {
-            FirstName = firstName.Trim();
-            LastName = lastName.Trim();
+        
 
-            if (DateTime.Now.Year - birthDate.Year > 110)
-                throw new OrderException("Idade superior a 110 anos não permitida!");
+        //public Person(string firstName, string lastName, DateTime birthDate, Cpf cpf, Email email)
+        //{
+        //    FirstName = firstName.Trim();
+        //    LastName = lastName.Trim();
 
-            if (!cpf.IsValid)
-                throw new OrderException("Cpf inválido!");
+        //    if (DateTime.Now.Year - birthDate.Year > 110)
+        //        throw new OrderException("Idade superior a 110 anos não permitida!");
 
-            if (!email.IsValid)
-                throw new OrderException("E-mail inválido!");
+        //    if (!cpf.IsValid)
+        //        throw new OrderException("Cpf inválido!");
 
-            BirthDate = birthDate;
-            Cpf = cpf;
-            Email = email;
-            base.DateHourRegister = DateTime.Now;
-        }
+        //    if (!email.IsValid)
+        //        throw new OrderException("E-mail inválido!");
+
+        //    BirthDate = birthDate;
+        //    Cpf = cpf;
+        //    Email = email;
+        //    base.DateHourRegister = DateTime.Now;
+        //}
 
         public string FullName =>
             $"{FirstName} {LastName}";
+
+        public void ValidaComplemento()
+        {
+            if (DateTime.Now.Year - BirthDate.Year > 110)
+                throw new OrderException("Idade superior a 110 anos não permitida!");
+            
+            if (!Cpf.IsValid)
+                throw new OrderException("Cpf inválido!");
+
+            if (!Email.IsValid)
+                throw new OrderException("E-mail inválido!");
+        }
 
         public void ValidaClasse()
         {

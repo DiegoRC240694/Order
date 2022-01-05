@@ -55,21 +55,21 @@ namespace Order
                 mensagem = "Conexão com o Fichario com erro: " + ex.Message;
             }
         }
-        public string Buscar(string Cpf)
+        public string Buscar(string Id)
         {
             status = true;
             try
             {
-                if (!(File.Exists(diretorio + "\\" + Cpf + ".json")))
+                if (!(File.Exists(diretorio + "\\" + Id + ".json")))
                 {
                     status = false;
-                    mensagem = "Identificador não existente: " + Cpf;
+                    mensagem = "Identificador não existente: " + Id;
                 }
                 else
                 {
-                    string conteudo = File.ReadAllText(diretorio + "\\" + Cpf + ".json");
+                    string conteudo = File.ReadAllText(diretorio + "\\" + Id + ".json");
                     status = true;
-                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + Cpf;
+                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + Id;
                     return conteudo;
                 }
             }

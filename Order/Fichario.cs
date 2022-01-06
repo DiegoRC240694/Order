@@ -31,21 +31,21 @@ namespace Order
                 mensagem = "Conexão com o Fichario com erro: " + ex.Message;
             }
         }
-        public void Incluir(string Id, string jsonUnit)
+        public void Incluir(string cpf, string jsonUnit)
         {
             status = true;
             try
             {
-                if (File.Exists(diretorio + "\\" + Id + ".json"))
+                if (File.Exists(diretorio + "\\" + cpf + ".json"))
                 {
                     status = false;
-                    mensagem = "Inclusão não permitida porque o identificador já existe: " + Id;
+                    mensagem = "Inclusão não permitida porque o identificador já existe: " + cpf;
                 }
                 else
                 {
-                    File.WriteAllText(diretorio + "\\" + Id + ".json", jsonUnit);
+                    File.WriteAllText(diretorio + "\\" + cpf + ".json", jsonUnit);
                     status = true;
-                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + Id;
+                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + cpf;
 
                 }
             }
@@ -55,21 +55,21 @@ namespace Order
                 mensagem = "Conexão com o Fichario com erro: " + ex.Message;
             }
         }
-        public string Buscar(string Id)
+        public string Buscar(string cpf)
         {
             status = true;
             try
             {
-                if (!(File.Exists(diretorio + "\\" + Id + ".json")))
+                if (!(File.Exists(diretorio + "\\" + cpf + ".json")))
                 {
                     status = false;
-                    mensagem = "Identificador não existente: " + Id;
+                    mensagem = "Identificador não existente: " + cpf;
                 }
                 else
                 {
-                    string conteudo = File.ReadAllText(diretorio + "\\" + Id + ".json");
+                    string conteudo = File.ReadAllText(diretorio + "\\" + cpf + ".json");
                     status = true;
-                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + Id;
+                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + cpf;
                     return conteudo;
                 }
             }
@@ -103,21 +103,21 @@ namespace Order
             return List;
         }
 
-        public void Apagar(string Id)
+        public void Apagar(string cpf)
         {
             status = true;
             try
             {
-                if (!(File.Exists(diretorio + "\\" + Id + ".json")))
+                if (!(File.Exists(diretorio + "\\" + cpf + ".json")))
                 {
                     status = false;
-                    mensagem = "Identificador não existente: " + Id;
+                    mensagem = "Identificador não existente: " + cpf;
                 }
                 else
                 {
-                    File.Delete(diretorio + "\\" + Id + ".json");
+                    File.Delete(diretorio + "\\" + cpf + ".json");
                     status = true;
-                    mensagem = "Exclusão efetuada com sucesso. Identificador: " + Id;
+                    mensagem = "Exclusão efetuada com sucesso. Identificador: " + cpf;
 
                 }
             }
@@ -129,22 +129,22 @@ namespace Order
 
         }
 
-        public void Alterar(string Id, string jsonUnit)
+        public void Alterar(string cpf, string jsonUnit)
         {
             status = true;
             try
             {
-                if (!(File.Exists(diretorio + "\\" + Id + ".json")))
+                if (!(File.Exists(diretorio + "\\" + cpf + ".json")))
                 {
                     status = false;
-                    mensagem = "Alteração não permitida porque o identificador não existe: " + Id;
+                    mensagem = "Alteração não permitida porque o identificador não existe: " + cpf;
                 }
                 else
                 {
-                    File.Delete(diretorio + "\\" + Id + ".json");
-                    File.WriteAllText(diretorio + "\\" + Id + ".json", jsonUnit);
+                    File.Delete(diretorio + "\\" + cpf + ".json");
+                    File.WriteAllText(diretorio + "\\" + cpf + ".json", jsonUnit);
                     status = true;
-                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + Id;
+                    mensagem = "Inclusão efetuada com sucesso. Identificador: " + cpf;
 
                 }
             }

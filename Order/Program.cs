@@ -59,7 +59,7 @@ namespace Order
             // Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR",false);   
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Frm_CadastroDeClientes());
+            Application.Run(new Frm_CadastroDeProduto());
         }
     }
 }

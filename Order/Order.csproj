@@ -70,6 +70,12 @@
     <Compile Include="Entities\OrderItem.cs" />
     <Compile Include="Entities\Person.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Frm_CadastroDeProduto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_CadastroDeProduto.Designer.cs">
+      <DependentUpon>Frm_CadastroDeProduto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Frm_Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -87,6 +93,12 @@
     </Compile>
     <Compile Include="Frm_Questao.Designer.cs">
       <DependentUpon>Frm_Questao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Frm_RegistroDePedido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Frm_RegistroDePedido.Designer.cs">
+      <DependentUpon>Frm_RegistroDePedido.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Exceptions\OrderException.cs" />
@@ -113,6 +125,9 @@
     <EmbeddedResource Include="Frm_CadastroDeClientes.resx">
       <DependentUpon>Frm_CadastroDeClientes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Frm_CadastroDeProduto.resx">
+      <DependentUpon>Frm_CadastroDeProduto.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Frm_Inicio.resx">
       <DependentUpon>Frm_Inicio.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_Questao.resx">
       <DependentUpon>Frm_Questao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Frm_RegistroDePedido.resx">
+      <DependentUpon>Frm_RegistroDePedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

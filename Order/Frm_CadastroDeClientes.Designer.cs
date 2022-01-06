@@ -48,6 +48,7 @@ namespace Order
             this.Btn_BuscaCPF = new System.Windows.Forms.Button();
             this.Txt_Id = new System.Windows.Forms.TextBox();
             this.Lbl_Id = new System.Windows.Forms.Label();
+            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // Lbl_CadastroDeClientes
@@ -235,12 +236,20 @@ namespace Order
             this.Lbl_Id.TabIndex = 21;
             this.Lbl_Id.Text = "ID";
             // 
+            // maskedTextBox1
+            // 
+            this.maskedTextBox1.Location = new System.Drawing.Point(106, 430);
+            this.maskedTextBox1.Name = "maskedTextBox1";
+            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
+            this.maskedTextBox1.TabIndex = 22;
+            // 
             // Frm_CadastroDeClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(912, 612);
+            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.Lbl_Id);
             this.Controls.Add(this.Txt_Id);
             this.Controls.Add(this.Btn_BuscaCPF);
@@ -289,5 +298,6 @@ namespace Order
         private System.Windows.Forms.Button Btn_BuscaCPF;
         private System.Windows.Forms.TextBox Txt_Id;
         private System.Windows.Forms.Label Lbl_Id;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }

@@ -17,11 +17,13 @@ namespace Order
         [Required(ErrorMessage = "Nome do Cliente é obrigatório.")]
         [StringLength(50, ErrorMessage = "Nome do Cliente deve ter no máximo 50 caracteres.")]
         public string Sobrenome { get; set; }
-
+       
         [Required(ErrorMessage = "Data de Nascimento é obrigatório.")]
         public DateTime DataDeNascimento { get; set; }
+
+       // public long ID { get; set; }
         public int Age
-        {
+        { 
             get
             {
                 var actualDate = DateTime.Now;
@@ -42,6 +44,31 @@ namespace Order
         [Required(ErrorMessage = "Email é obrigatório.")]
         [StringLength(50, ErrorMessage = "Email deve ter no máximo 50 caracteres.")]
         public string Email { get; set; }
+
+        //public Cliente(string primeironome, string sobrenome, DateTime datadenascimento, string cpf, string email)
+        //{
+        //    ID = 0;
+        //    PrimeiroNome = primeironome.Trim();
+        //    Sobrenome = sobrenome.Trim();
+
+        //    if (DateTime.Now.Year - DataDeNascimento.Year > 110)
+        //        throw new OrderException("Idade superior a 110 anos não permitida!");
+
+        //    bool validacpf = Valida.CPF(this.Cpf);
+        //    if (validacpf == false)
+        //        throw new OrderException("Cpf inválido!");
+
+        //    bool validaemail = Valida.Email(this.Email);
+        //    if (validaemail == false)
+        //        throw new OrderException("E-mail inválido!");
+
+        //    DataDeNascimento = datadenascimento;
+        //    Cpf = cpf;
+        //    Email = Email;
+        //    base.DateHourRegister = DateTime.Now;
+
+
+        //}
 
         public void ValidaClasse()
         {
@@ -73,16 +100,19 @@ namespace Order
             bool validaemail = Valida.Email(this.Email);
             if (validaemail == false)
                 throw new OrderException("E-mail inválido!");
+
+            base.DateHourRegister = DateTime.Now;
         }
 
         public void IncluirFichario(string conexao)
         {
             string clienteJson = Cliente.SerializedClassUnit(this);
             Fichario F = new Fichario(conexao);
-            Entity en = new Entity();
+           // Entity en = new Entity();
             if (F.status)
             {
-                F.Incluir(en.Id.ToString(), clienteJson);
+                // F.Incluir(en.Id.ToString(), clienteJson);
+                F.Incluir(Id.ToString(), clienteJson);
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
@@ -95,13 +125,13 @@ namespace Order
             }
         }
 
-        public Cliente BuscarFichario(string id, string conexao)
+        public Cliente BuscarFichario(string cpf, string conexao)
         {
 
             Fichario F = new Fichario(conexao);
             if (F.status)
             {
-                string clienteJson = F.Buscar(id);
+                string clienteJson = F.Buscar(Id.ToString());
                 return Cliente.DeSerializedClassUnit(clienteJson);
             }
             else
@@ -114,10 +144,11 @@ namespace Order
         {
             string clienteJson = Cliente.SerializedClassUnit(this);
             Fichario F = new Fichario(conexao);
-            Entity en = new Entity();
+           // Entity en = new Entity();
             if (F.status)
             {
-                F.Alterar(en.Id.ToString(), clienteJson);
+                // F.Alterar(en.Id.ToString(), clienteJson);
+                F.Alterar(Id.ToString(), clienteJson);
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
@@ -133,10 +164,11 @@ namespace Order
         public void ApagarFichario(string conexao)
         {
             Fichario F = new Fichario(conexao);
-            Entity en = new Entity();
+            //Entity en = new Entity();
             if (F.status)
             {
-                F.Apagar(en.Id.ToString());
+               // F.Apagar(en.Id.ToString());
+                F.Apagar(Id.ToString());
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
@@ -151,7 +183,7 @@ namespace Order
         public List<List<string>> BuscarFicharioTodos(string conexao)
         {
             Fichario F = new Fichario(conexao);
-            Entity en = new Entity();
+            //Entity en = new Entity();
             if (F.status)
             {
                 List<string> List = new List<string>();
@@ -162,7 +194,8 @@ namespace Order
                     for (int i = 0; i <= List.Count - 1; i++)
                     {
                         Cliente C = Cliente.DeSerializedClassUnit(List[i]);
-                        ListaBusca.Add(new List<string> { en.Id.ToString(), C.PrimeiroNome });
+                        //ListaBusca.Add(new List<string> { en.Id.ToString(), C.PrimeiroNome });
+                        ListaBusca.Add(new List<string> { Id.ToString(), C.PrimeiroNome });
                     }
                     return ListaBusca;
                 }

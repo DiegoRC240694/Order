@@ -112,7 +112,7 @@ namespace Order
             if (F.status)
             {
                 // F.Incluir(en.Id.ToString(), clienteJson);
-                F.Incluir(Id.ToString(), clienteJson);
+                F.Incluir(Cpf, clienteJson);
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
@@ -131,7 +131,7 @@ namespace Order
             Fichario F = new Fichario(conexao);
             if (F.status)
             {
-                string clienteJson = F.Buscar(Id.ToString());
+                string clienteJson = F.Buscar(cpf);
                 return Cliente.DeSerializedClassUnit(clienteJson);
             }
             else
@@ -148,7 +148,7 @@ namespace Order
             if (F.status)
             {
                 // F.Alterar(en.Id.ToString(), clienteJson);
-                F.Alterar(Id.ToString(), clienteJson);
+                F.Alterar(Cpf, clienteJson);
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
@@ -168,7 +168,7 @@ namespace Order
             if (F.status)
             {
                // F.Apagar(en.Id.ToString());
-                F.Apagar(Id.ToString());
+                F.Apagar(Cpf);
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
@@ -193,9 +193,9 @@ namespace Order
                     List<List<string>> ListaBusca = new List<List<string>>();
                     for (int i = 0; i <= List.Count - 1; i++)
                     {
-                        Cliente C = Cliente.DeSerializedClassUnit(List[i]);
+                        DeSerializedClassUnit(List[i]);
                         //ListaBusca.Add(new List<string> { en.Id.ToString(), C.PrimeiroNome });
-                        ListaBusca.Add(new List<string> { Id.ToString(), C.PrimeiroNome });
+                        ListaBusca.Add(new List<string> { Cpf, PrimeiroNome, Sobrenome });
                     }
                     return ListaBusca;
                 }

@@ -58,7 +58,7 @@ namespace Order
 
         private void Frm_Menu_Load(object sender, EventArgs e)
         {
-           // Btn_ninicio_Click(null, e);
+            Btn_Inicio_Click(null, e);
         }
 
      
@@ -101,9 +101,16 @@ namespace Order
                 subMenu.Visible = false;
         }
 
-        private void btninicio_Click(object sender, EventArgs e)
-        {
+        
 
+        private void Btn_CadastroDeClientes_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPainel(new Frm_CadastroDeClientes());
+        }
+
+        private void Btn_Inicio_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPainel(new Frm_Inicio());
         }
     }
 }

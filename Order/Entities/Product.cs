@@ -10,21 +10,21 @@ namespace Order
     {
         [Required(ErrorMessage = "Descrição é obrigatório.")]
         [StringLength(50, ErrorMessage = "Descrição deve ter no máximo 50 caracteres.")]
-        public string Description { get; private set; }
+        public string Description { get;  set; }
 
         [Required(ErrorMessage = "Quantidade é obrigatório.")]
-        public decimal UnitaryValue { get; private set; }
+        public decimal UnitaryValue { get;  set; }
 
         [Required(ErrorMessage = "Valor do Produto é obrigatório.")]
-        public int AvailableQuantity { get; private set; }
+        public int AvailableQuantity { get; set; }
 
-        public Product(string description, decimal unitaryValue, int availableQuantity)
-        {
-            Description = description;
-            UnitaryValue = unitaryValue;
-            AvailableQuantity = availableQuantity;
-            base.DateHourRegister = DateTime.Now;
-        }
+        //public Product(string description, decimal unitaryValue, int availableQuantity)
+        //{
+        //    Description = description;
+        //    UnitaryValue = unitaryValue;
+        //    AvailableQuantity = availableQuantity;
+        //    base.DateHourRegister = DateTime.Now;
+        //}
 
         public void AddAvailableQuantity(int quantity)
         {
@@ -64,12 +64,41 @@ namespace Order
             if (F.status)
             {
                 // F.Incluir(en.Id.ToString(), clienteJson);
-                F.Incluir(Id.ToString(), ProdutoJson);
+                F.Incluir(Description, ProdutoJson);
                 if (!(F.status))
                 {
                     throw new Exception(F.mensagem);
 
                 }
+            }
+            else
+            {
+                throw new Exception(F.mensagem);
+            }
+        }
+
+        public List<string> ListaFichario(string conexao)
+        {
+            Fichario F = new Fichario(conexao);
+            if (F.status)
+            {
+                List<string> todosJson = F.BuscarTodos();
+                return todosJson;
+            }
+            else
+            {
+                throw new Exception(F.mensagem);
+            }
+        }
+
+        public Product BuscarFichario(string cpf, string conexao)
+        {
+
+            Fichario F = new Fichario(conexao);
+            if (F.status)
+            {
+                string clienteJson = F.Buscar(cpf);
+                return Product.DeSerializedClassUnit(clienteJson);
             }
             else
             {

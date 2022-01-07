@@ -29,46 +29,23 @@ namespace Order
         }
         Product LeituraFormulario()
         {
-            string productDescription;
-            int productAvailable = -1;
-            decimal productUnitaryValue = -1M;
 
-            
-            productDescription = Txt_DescricaoDoProduto.Text;
 
-            while (productAvailable == -1)
-            {
-                try
-                {
-                   
-                    productAvailable = Convert.ToInt32(Txt_QuantidadeDisponivel.Text);
-                }
-                catch (Exception)
-                {
-                    Message.InvalidInput();
-                }
-            }
-
-            while (productUnitaryValue == -1M)
-            {
-                try
-                {
-                    
-                    productUnitaryValue = Convert.ToDecimal(Txt_ValorUnitarioDoProduto.Text);
-                }
-                catch (Exception)
-                {
-                    Message.InvalidInput();
-                }
-            }
-
-            var product = new Product(productDescription, productUnitaryValue, productAvailable);
-            return product;
+            Product P = new Product();
+            P.Description = Txt_DescricaoDoProduto.Text;
+            P.AvailableQuantity = Convert.ToInt32(Txt_QuantidadeDisponivel.Text);
+            P.UnitaryValue = Convert.ToDecimal(Txt_ValorUnitarioDoProduto.Text);
+            return P;
         }
 
-        void EscreveFormulario(Cliente C)
+     
+
+
+        void EscreveFormulario(Product P)
         {
-          
+            Txt_DescricaoDoProduto.Text = P.Description;
+            Txt_QuantidadeDisponivel.Text = P.UnitaryValue.ToString();
+            Txt_ValorUnitarioDoProduto.Text = P.AvailableQuantity.ToString();
         }
 
         private void btn_Salvar_Click(object sender, EventArgs e)
@@ -77,12 +54,11 @@ namespace Order
             {
                 // Customer C = new Customer();
                 // Person C = new Person();
-                
+
                 Product P;
-                
+
                 P = LeituraFormulario();
                 P.ValidaClasse();
-                P.AddAvailableQuantity(Convert.ToInt32(Txt_QuantidadeDisponivel.Text));
                 P.IncluirFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Produto");
                 MessageBox.Show("Ok: Identificador incluido com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -95,5 +71,61 @@ namespace Order
                 MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void Btn_VisualizarProdutos_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                //Customer C = new Customer();
+                //Person C;
+                //Cliente C = new Cliente();
+                Product P = new Product();
+                
+                List<string> List = new List<string>();
+                List = P.ListaFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Produto");
+              
+                if (List == null)
+                {
+                    MessageBox.Show("Base de dados está vazia. Não existe nenhum identificador cadastrado", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+                    List<List<string>> ListaBusca = new List<List<string>>();
+                    for (int i = 0; i <= List.Count - 1; i++)
+                    {
+                        P = Product.DeSerializedClassUnit(List[i]);
+                        ListaBusca.Add(new List<string> { P.Description, P.UnitaryValue.ToString(), P.AvailableQuantity.ToString() });
+                    }
+                    Frm_Busca FForm = new Frm_Busca(ListaBusca);
+                    FForm.ShowDialog();
+                    if (FForm.DialogResult == DialogResult.OK)
+                    {
+                        var idSelect = FForm.idSelect;
+                        P = P.BuscarFichario(idSelect, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Produto");
+                        if (P == null)
+                        {
+                            MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            EscreveFormulario(P);
+                        }
+                    }
+                }
+
+            }
+
+            catch (Exception Ex)
+            {
+
+                MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+            
     }
 }
+    
+

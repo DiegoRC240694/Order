@@ -40,16 +40,17 @@ namespace Order
             // 
             // Btn_Salvar
             // 
-            this.Btn_Salvar.Location = new System.Drawing.Point(254, 329);
+            this.Btn_Salvar.Location = new System.Drawing.Point(256, 245);
             this.Btn_Salvar.Name = "Btn_Salvar";
             this.Btn_Salvar.Size = new System.Drawing.Size(75, 23);
             this.Btn_Salvar.TabIndex = 0;
             this.Btn_Salvar.Text = "Salvar";
             this.Btn_Salvar.UseVisualStyleBackColor = true;
+            this.Btn_Salvar.Click += new System.EventHandler(this.Btn_Salvar_Click);
             // 
             // Btn_Cancelar
             // 
-            this.Btn_Cancelar.Location = new System.Drawing.Point(414, 329);
+            this.Btn_Cancelar.Location = new System.Drawing.Point(407, 245);
             this.Btn_Cancelar.Name = "Btn_Cancelar";
             this.Btn_Cancelar.Size = new System.Drawing.Size(75, 23);
             this.Btn_Cancelar.TabIndex = 1;
@@ -58,7 +59,7 @@ namespace Order
             // 
             // Txt_NumeroCliente
             // 
-            this.Txt_NumeroCliente.Location = new System.Drawing.Point(331, 135);
+            this.Txt_NumeroCliente.Location = new System.Drawing.Point(327, 107);
             this.Txt_NumeroCliente.Name = "Txt_NumeroCliente";
             this.Txt_NumeroCliente.Size = new System.Drawing.Size(100, 20);
             this.Txt_NumeroCliente.TabIndex = 2;
@@ -66,24 +67,28 @@ namespace Order
             // Lbl_NumeroCliente
             // 
             this.Lbl_NumeroCliente.AutoSize = true;
-            this.Lbl_NumeroCliente.Location = new System.Drawing.Point(328, 101);
+            this.Lbl_NumeroCliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_NumeroCliente.ForeColor = System.Drawing.Color.White;
+            this.Lbl_NumeroCliente.Location = new System.Drawing.Point(324, 88);
             this.Lbl_NumeroCliente.Name = "Lbl_NumeroCliente";
-            this.Lbl_NumeroCliente.Size = new System.Drawing.Size(94, 13);
+            this.Lbl_NumeroCliente.Size = new System.Drawing.Size(118, 16);
             this.Lbl_NumeroCliente.TabIndex = 3;
             this.Lbl_NumeroCliente.Text = "Numero de Cliente";
             // 
             // Lbl_NumeroProduto
             // 
             this.Lbl_NumeroProduto.AutoSize = true;
-            this.Lbl_NumeroProduto.Location = new System.Drawing.Point(328, 188);
+            this.Lbl_NumeroProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lbl_NumeroProduto.ForeColor = System.Drawing.Color.White;
+            this.Lbl_NumeroProduto.Location = new System.Drawing.Point(318, 161);
             this.Lbl_NumeroProduto.Name = "Lbl_NumeroProduto";
-            this.Lbl_NumeroProduto.Size = new System.Drawing.Size(99, 13);
+            this.Lbl_NumeroProduto.Size = new System.Drawing.Size(54, 16);
             this.Lbl_NumeroProduto.TabIndex = 5;
-            this.Lbl_NumeroProduto.Text = "Numero de Produto";
+            this.Lbl_NumeroProduto.Text = "Produto";
             // 
             // Txt_NumeroProduto
             // 
-            this.Txt_NumeroProduto.Location = new System.Drawing.Point(327, 220);
+            this.Txt_NumeroProduto.Location = new System.Drawing.Point(321, 180);
             this.Txt_NumeroProduto.Name = "Txt_NumeroProduto";
             this.Txt_NumeroProduto.Size = new System.Drawing.Size(100, 20);
             this.Txt_NumeroProduto.TabIndex = 4;
@@ -91,9 +96,11 @@ namespace Order
             // Lbl_RegistroDePedido
             // 
             this.Lbl_RegistroDePedido.AutoSize = true;
-            this.Lbl_RegistroDePedido.Location = new System.Drawing.Point(328, 32);
+            this.Lbl_RegistroDePedido.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.Lbl_RegistroDePedido.ForeColor = System.Drawing.Color.White;
+            this.Lbl_RegistroDePedido.Location = new System.Drawing.Point(298, 26);
             this.Lbl_RegistroDePedido.Name = "Lbl_RegistroDePedido";
-            this.Lbl_RegistroDePedido.Size = new System.Drawing.Size(99, 13);
+            this.Lbl_RegistroDePedido.Size = new System.Drawing.Size(201, 26);
             this.Lbl_RegistroDePedido.TabIndex = 6;
             this.Lbl_RegistroDePedido.Text = "Registro De Pedido";
             // 
@@ -101,6 +108,7 @@ namespace Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Lbl_RegistroDePedido);
             this.Controls.Add(this.Lbl_NumeroProduto);
@@ -109,6 +117,7 @@ namespace Order
             this.Controls.Add(this.Txt_NumeroCliente);
             this.Controls.Add(this.Btn_Cancelar);
             this.Controls.Add(this.Btn_Salvar);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_RegistroDePedido";
             this.Text = "Registro De Pedido";
             this.ResumeLayout(false);

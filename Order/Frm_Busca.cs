@@ -42,13 +42,17 @@ namespace Order
             public string id { get; set; }
             public string PrimeiroNome { get; set; }
             public string Sobrenome { get; set; }
-
+            public string FullName =>
+                  $"{id} {PrimeiroNome} {Sobrenome}";
             public override string ToString()
             {
-                return PrimeiroNome;
+                
+
+                return FullName;
 
             }
         }
+
 
         private void Btn_Selecionar_Click(object sender, EventArgs e)
         {

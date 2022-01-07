@@ -29,7 +29,7 @@ namespace Order
                 try
                 {
                     ListCustomers(customers);
-                    Console.WriteLine("Informe o número de um cliente válido: ");
+                   
                     indexCustomer = Convert.ToInt32(Txt_NumeroCliente.Text);
                 }
                 catch (Exception)
@@ -168,6 +168,11 @@ namespace Order
             while (chooseMoreProducts < 1 || chooseMoreProducts > 2);
 
             return chooseMoreProducts;
+        }
+
+        private void Btn_Salvar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

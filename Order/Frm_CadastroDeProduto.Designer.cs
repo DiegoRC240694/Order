@@ -37,7 +37,7 @@ namespace Order
             this.Lbl_ValorUnitarioDoProduto = new System.Windows.Forms.Label();
             this.Lbl_CadastroDeProduto = new System.Windows.Forms.Label();
             this.btn_Salvar = new System.Windows.Forms.Button();
-            this.Btn_Cancelar = new System.Windows.Forms.Button();
+            this.Btn_VisualizarProdutos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Lbl_DescricaoDoProduto
@@ -45,27 +45,24 @@ namespace Order
             this.Lbl_DescricaoDoProduto.AutoSize = true;
             this.Lbl_DescricaoDoProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_DescricaoDoProduto.ForeColor = System.Drawing.Color.White;
-            this.Lbl_DescricaoDoProduto.Location = new System.Drawing.Point(305, 110);
-            this.Lbl_DescricaoDoProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_DescricaoDoProduto.Location = new System.Drawing.Point(230, 91);
             this.Lbl_DescricaoDoProduto.Name = "Lbl_DescricaoDoProduto";
-            this.Lbl_DescricaoDoProduto.Size = new System.Drawing.Size(182, 20);
+            this.Lbl_DescricaoDoProduto.Size = new System.Drawing.Size(153, 17);
             this.Lbl_DescricaoDoProduto.TabIndex = 0;
             this.Lbl_DescricaoDoProduto.Text = "Descrição do Produto :";
             // 
             // Txt_DescricaoDoProduto
             // 
-            this.Txt_DescricaoDoProduto.Location = new System.Drawing.Point(515, 110);
-            this.Txt_DescricaoDoProduto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_DescricaoDoProduto.Location = new System.Drawing.Point(387, 91);
             this.Txt_DescricaoDoProduto.Name = "Txt_DescricaoDoProduto";
-            this.Txt_DescricaoDoProduto.Size = new System.Drawing.Size(149, 22);
+            this.Txt_DescricaoDoProduto.Size = new System.Drawing.Size(113, 20);
             this.Txt_DescricaoDoProduto.TabIndex = 1;
             // 
             // Txt_QuantidadeDisponivel
             // 
-            this.Txt_QuantidadeDisponivel.Location = new System.Drawing.Point(515, 147);
-            this.Txt_QuantidadeDisponivel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_QuantidadeDisponivel.Location = new System.Drawing.Point(387, 121);
             this.Txt_QuantidadeDisponivel.Name = "Txt_QuantidadeDisponivel";
-            this.Txt_QuantidadeDisponivel.Size = new System.Drawing.Size(149, 22);
+            this.Txt_QuantidadeDisponivel.Size = new System.Drawing.Size(113, 20);
             this.Txt_QuantidadeDisponivel.TabIndex = 3;
             // 
             // Lbl_QuantidadeDisponivel
@@ -73,19 +70,17 @@ namespace Order
             this.Lbl_QuantidadeDisponivel.AutoSize = true;
             this.Lbl_QuantidadeDisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_QuantidadeDisponivel.ForeColor = System.Drawing.Color.White;
-            this.Lbl_QuantidadeDisponivel.Location = new System.Drawing.Point(300, 147);
-            this.Lbl_QuantidadeDisponivel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_QuantidadeDisponivel.Location = new System.Drawing.Point(226, 121);
             this.Lbl_QuantidadeDisponivel.Name = "Lbl_QuantidadeDisponivel";
-            this.Lbl_QuantidadeDisponivel.Size = new System.Drawing.Size(187, 20);
+            this.Lbl_QuantidadeDisponivel.Size = new System.Drawing.Size(159, 17);
             this.Lbl_QuantidadeDisponivel.TabIndex = 2;
             this.Lbl_QuantidadeDisponivel.Text = "Quantidade Disponível :";
             // 
             // Txt_ValorUnitarioDoProduto
             // 
-            this.Txt_ValorUnitarioDoProduto.Location = new System.Drawing.Point(515, 184);
-            this.Txt_ValorUnitarioDoProduto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Txt_ValorUnitarioDoProduto.Location = new System.Drawing.Point(387, 152);
             this.Txt_ValorUnitarioDoProduto.Name = "Txt_ValorUnitarioDoProduto";
-            this.Txt_ValorUnitarioDoProduto.Size = new System.Drawing.Size(149, 22);
+            this.Txt_ValorUnitarioDoProduto.Size = new System.Drawing.Size(113, 20);
             this.Txt_ValorUnitarioDoProduto.TabIndex = 5;
             // 
             // Lbl_ValorUnitarioDoProduto
@@ -93,10 +88,9 @@ namespace Order
             this.Lbl_ValorUnitarioDoProduto.AutoSize = true;
             this.Lbl_ValorUnitarioDoProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_ValorUnitarioDoProduto.ForeColor = System.Drawing.Color.White;
-            this.Lbl_ValorUnitarioDoProduto.Location = new System.Drawing.Point(280, 184);
-            this.Lbl_ValorUnitarioDoProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_ValorUnitarioDoProduto.Location = new System.Drawing.Point(211, 152);
             this.Lbl_ValorUnitarioDoProduto.Name = "Lbl_ValorUnitarioDoProduto";
-            this.Lbl_ValorUnitarioDoProduto.Size = new System.Drawing.Size(207, 20);
+            this.Lbl_ValorUnitarioDoProduto.Size = new System.Drawing.Size(176, 17);
             this.Lbl_ValorUnitarioDoProduto.TabIndex = 4;
             this.Lbl_ValorUnitarioDoProduto.Text = "Valor Unitário do Produto :";
             // 
@@ -105,41 +99,39 @@ namespace Order
             this.Lbl_CadastroDeProduto.AutoSize = true;
             this.Lbl_CadastroDeProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.Lbl_CadastroDeProduto.ForeColor = System.Drawing.Color.White;
-            this.Lbl_CadastroDeProduto.Location = new System.Drawing.Point(370, 30);
-            this.Lbl_CadastroDeProduto.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Lbl_CadastroDeProduto.Location = new System.Drawing.Point(279, 26);
             this.Lbl_CadastroDeProduto.Name = "Lbl_CadastroDeProduto";
-            this.Lbl_CadastroDeProduto.Size = new System.Drawing.Size(269, 31);
+            this.Lbl_CadastroDeProduto.Size = new System.Drawing.Size(216, 26);
             this.Lbl_CadastroDeProduto.TabIndex = 6;
             this.Lbl_CadastroDeProduto.Text = "Cadastro De Produto";
             // 
             // btn_Salvar
             // 
-            this.btn_Salvar.Location = new System.Drawing.Point(402, 275);
-            this.btn_Salvar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btn_Salvar.Location = new System.Drawing.Point(323, 227);
             this.btn_Salvar.Name = "btn_Salvar";
-            this.btn_Salvar.Size = new System.Drawing.Size(100, 28);
+            this.btn_Salvar.Size = new System.Drawing.Size(75, 23);
             this.btn_Salvar.TabIndex = 7;
             this.btn_Salvar.Text = "Salvar";
             this.btn_Salvar.UseVisualStyleBackColor = true;
             this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click);
             // 
-            // Btn_Cancelar
+            // Btn_VisualizarProdutos
             // 
-            this.Btn_Cancelar.Location = new System.Drawing.Point(573, 275);
-            this.Btn_Cancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Btn_Cancelar.Name = "Btn_Cancelar";
-            this.Btn_Cancelar.Size = new System.Drawing.Size(100, 28);
-            this.Btn_Cancelar.TabIndex = 8;
-            this.Btn_Cancelar.Text = "Cancelar";
-            this.Btn_Cancelar.UseVisualStyleBackColor = true;
+            this.Btn_VisualizarProdutos.Location = new System.Drawing.Point(425, 227);
+            this.Btn_VisualizarProdutos.Name = "Btn_VisualizarProdutos";
+            this.Btn_VisualizarProdutos.Size = new System.Drawing.Size(106, 23);
+            this.Btn_VisualizarProdutos.TabIndex = 9;
+            this.Btn_VisualizarProdutos.Text = "Visualizar Produtos";
+            this.Btn_VisualizarProdutos.UseVisualStyleBackColor = true;
+            this.Btn_VisualizarProdutos.Click += new System.EventHandler(this.Btn_VisualizarProdutos_Click);
             // 
             // Frm_CadastroDeProduto
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
-            this.ClientSize = new System.Drawing.Size(1059, 553);
-            this.Controls.Add(this.Btn_Cancelar);
+            this.ClientSize = new System.Drawing.Size(794, 449);
+            this.Controls.Add(this.Btn_VisualizarProdutos);
             this.Controls.Add(this.btn_Salvar);
             this.Controls.Add(this.Lbl_CadastroDeProduto);
             this.Controls.Add(this.Txt_ValorUnitarioDoProduto);
@@ -149,7 +141,6 @@ namespace Order
             this.Controls.Add(this.Txt_DescricaoDoProduto);
             this.Controls.Add(this.Lbl_DescricaoDoProduto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Frm_CadastroDeProduto";
             this.Text = "Frm_CadastroDeProduto";
             this.ResumeLayout(false);
@@ -167,6 +158,6 @@ namespace Order
         private System.Windows.Forms.Label Lbl_ValorUnitarioDoProduto;
         private System.Windows.Forms.Label Lbl_CadastroDeProduto;
         private System.Windows.Forms.Button btn_Salvar;
-        private System.Windows.Forms.Button Btn_Cancelar;
+        private System.Windows.Forms.Button Btn_VisualizarProdutos;
     }
 }

@@ -103,7 +103,7 @@ namespace Order
                 }
             }
 
-            var product = new Product(productDescription, productUnitaryValue, productAvailable);
+            var product = new Product();
             return product;
         }
 

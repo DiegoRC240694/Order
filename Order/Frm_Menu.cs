@@ -112,5 +112,20 @@ namespace Order
         {
             AbrirFormNoPainel(new Frm_Inicio());
         }
+
+        private void Btn_CadastroDeVendas_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPainel(new Frm_RegistroDePedido());
+        }
+
+        private void Btn_CadastroDeProdutos_Click(object sender, EventArgs e)
+        {
+            AbrirFormNoPainel(new Frm_CadastroDeProduto());
+        }
+
+        private void btnsalir_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Order
 {
-    public static class Message
+    public static class Mensagem
     {
         public static void Menu()
         {
@@ -18,13 +18,13 @@ namespace Order
             Console.WriteLine();
         }
 
-        public static void InvalidOption()
+        public static void OpcaoInvalida()
         {
             Console.WriteLine();
             Console.WriteLine("Opção escolhida inválida, escolha uma das opções do menu");
         }
 
-        public static void InvalidInput()
+        public static void EntradaInvalida()
         {
             Console.WriteLine();
             Console.WriteLine("Digite apenas caracteres numéricos");

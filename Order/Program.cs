@@ -4,50 +4,49 @@ using System.Windows.Forms;
 
 namespace Order
 {
-    class Program
+    static class Program
     {
-        //    static void Main(string[] args)
+        //static void Main(string[] args)
+        //{
+        //    List<Cliente> _clientes = new List<Cliente>();
+        //    List<Produtos> _produtos = new List<Produtos>();
+        //    List<Pedido> _pedidos = new List<Pedido>();
+
+        //    Console.WriteLine("Seja bem-vindo!");
+
+        //    var opcaoEscolhida = -1;
+
+        //    while (opcaoEscolhida != 0)
         //    {
-        //    //    List<Customer> _customers = new List<Customer>();
-        //    //    List<Product> _products = new List<Product>();
-        //    //    List<Order> _orders = new List<Order>();
+        //        opcaoEscolhida = Util.EscolhaOpcaoMenu();
 
-        //    //    Console.WriteLine("Seja bem-vindo!");
+        //        switch (opcaoEscolhida)
+        //        {
+        //            case 1:
+        //                _clientes.Add(Util.CadastrarCliente());
+        //                break;
+        //            case 2:
+        //                _produtos.Add(Util.RegistrarProduto());
+        //                break;
+        //            case 3:
+        //                _pedidos.Add(Util.RegistrarPedido(_clientes, _produtos));
+        //                break;
+        //            case 4:
+        //                Util.ListarClientes(_clientes);
+        //                break;
+        //            case 5:
+        //                Util.ListarProdutos(_produtos);
+        //                break;
+        //            case 6:
+        //                Util.ListarPedidos(_pedidos);
+        //                break;
+        //            default:
+        //                Mensagem.EntradaInvalida();
+        //                break;
+        //        }
+        //    }
 
-        //    //    var chosenOption = -1;
-
-        //    //    while (chosenOption != 0)
-        //    //    {
-        //    //        chosenOption = Utils.ChooseMenuOption();
-
-        //    //        switch (chosenOption)
-        //    //        {
-        //    //            case 1:
-        //    //                _customers.Add(Utils.RegisterCustomer());
-        //    //                break;
-        //    //            case 2:
-        //    //                _products.Add(Utils.RegisterProduct());
-        //    //                break;
-        //    //            case 3:
-        //    //                _orders.Add(Utils.RegisterOrder(_customers, _products));
-        //    //                break;
-        //    //            case 4:
-        //    //                Utils.ListCustomers(_customers);
-        //    //                break;
-        //    //            case 5:
-        //    //                Utils.ListProducts(_products);
-        //    //                break;
-        //    //            case 6:
-        //    //                Utils.ListOrders(_orders);
-        //    //                break;
-        //    //            default:
-        //    //                Message.InvalidOption();
-        //    //                break;
-        //    //        }
-        //    //    }
-
-        //    //    Environment.Exit(0);
-        //    //}
+        //    Environment.Exit(0);
         //}
 
         /// <summary>

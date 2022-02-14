@@ -4,28 +4,28 @@ namespace Order
 {
     public struct Email
     {
-        public readonly string _value;
-        public readonly bool IsValid;
+        public readonly string _valor;
+        public readonly bool EValido;
 
-        private Email(string value)
+        public Email(string valor)
         {
-            _value = value.Trim();
+            _valor = valor.Trim();
 
-            if (string.IsNullOrEmpty(_value))
+            if (string.IsNullOrEmpty(_valor))
             {
-                IsValid = false;
+                EValido = false;
                 return;
             }
 
-            IsValid = Regex.IsMatch(_value, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
+            EValido = Regex.IsMatch(_valor, @"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
 
-            if (!IsValid)
+            if (!EValido)
                 return;
         }
 
-        public static implicit operator Email(string value)
-            => new Email(value);
+        public static implicit operator Email(string valor)
+            => new Email(valor);
 
-        public override string ToString() => _value;
+        public override string ToString() => _valor;
     }
 }

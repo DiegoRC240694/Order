@@ -10,12 +10,15 @@ using System.Windows.Forms;
 using Microsoft.VisualBasic;
 using System.ComponentModel.DataAnnotations;
 using System.Globalization;
+using Npgsql;
 
 namespace Order
 {
     public partial class Frm_CadastroDeClientes : Form
     {
-       
+        public int rowIndex = -1;
+        public NpgsqlConnection conn;
+
         public Frm_CadastroDeClientes()
         {
             InitializeComponent();
@@ -30,12 +33,12 @@ namespace Order
             Txt_SobrenomeCliente.Text = "";
             Txt_Email.Text = "";
             Date_DataDeNascimento.Value = DateTime.Now.Date;
-            //Txt_Id.Text = "";
+            
 
         }
       
 
-        Person LeituraFormulario()
+        Pessoa LeituraFormulario()
         {
 
             
@@ -57,36 +60,11 @@ namespace Order
     
                     birthDate = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
         
-                var person = new Person(firstName, lastName, birthDate, cpf, email);
+                var person = new Pessoa(firstName, lastName, birthDate, cpf, email);
             return person;
                
         }
 
-
-
-        //Customer LeituraFormulario()
-        //{
-        //    Customer C = new Customer();
-        //    //Person C = new Person();
-        //    //Cliente C = new Cliente();
-            
-        //    C.Person.Cpf = Mask_CPF.Text;
-        //    C.Person.FirstName = Txt_NomeCliente.Text;
-        //    C.Person.LastName = Txt_SobrenomeCliente.Text;
-        //    C.Person.Email = Txt_Email.Text;
-        //    C.Person.BirthDate = Date_DataDeNascimento.Value.Date;
-        //    return C;
-        //}
-
-        void EscreveFormulario(Customer C)
-        {
-            //Txt_Id.Text = C.Id.ToString();
-            Mask_CPF.Text = C.Person.Cpf.ToString();
-            Txt_NomeCliente.Text = C.Person.FirstName;
-            Txt_SobrenomeCliente.Text = C.Person.LastName;
-            Txt_Email.Text = C.Person.Email.ToString();
-            Date_DataDeNascimento.Value = C.Person.BirthDate;
-        }
 
         private void Btn_SalvarNovoCliente_Click(object sender, EventArgs e)
         {
@@ -96,9 +74,9 @@ namespace Order
                 //Customer C = new Customer();
                // Person P;
                 //Customer C;
-                Customer C = new Customer();
-                C.Person = LeituraFormulario();
-                C.Person.ValidaClasse();
+                Cliente C = new Cliente();
+                C.Pessoa = LeituraFormulario();
+                C.Pessoa.ValidaClasse();
                 C.Person.IncluirFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
                 MessageBox.Show("Ok: Identificador incluido com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -270,6 +248,27 @@ namespace Order
         private void Btn_LimparTela_Click(object sender, EventArgs e)
         {
             LimparFormulario();
+        }
+
+        private void Dg_Clientes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                rowIndex = e.RowIndex;
+                Txt_NomeCliente.Text = Dg_Clientes.Rows[e.RowIndex].Cells["primeironome"].Value.ToString();
+                Txt_SobrenomeCliente.Text = Dg_Clientes.Rows[e.RowIndex].Cells["ultimonome"].Value.ToString();
+                Date_DataDeNascimento.Value = Convert.ToDateTime(Dg_Clientes.Rows[e.RowIndex].Cells["datanascimento"].Value, new CultureInfo("pt-BR"));
+                Mask_CPF.Text = Dg_Clientes.Rows[e.RowIndex].Cells["cpf"].Value.ToString();
+                Txt_Email.Text = Dg_Clientes.Rows[e.RowIndex].Cells["email"].Value.ToString();
+
+
+            }
+        }
+
+        private void Frm_CadastroDeClientes_Load(object sender, EventArgs e)
+        {
+            //conn = new NpgsqlConnection(connstring);
+            //Select();
         }
     }
 }

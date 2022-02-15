@@ -45,10 +45,10 @@ namespace Order
 
             try
             {
-                var pessoa = new Pessoa(primeiroNome, ultimoNome, dataNascimento, cpf, email);
+              //  var pessoa = new Pessoa(primeiroNome, ultimoNome, dataNascimento, cpf, email);
                 var cliente = new Cliente()
                 {
-                    Pessoa = pessoa,
+                    //Pessoa = pessoa,
                     Ativo = true
                 };
 

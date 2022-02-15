@@ -14,9 +14,9 @@ namespace Order
 
     public class Pedido : BaseEntidade
     {
-        public StatusPedido Status { get; private set; }
-        public List<ItemPedido> Itens { get; private set; }
-        public Cliente Cliente { get; private set; }
+        public StatusPedido Status { get;  set; }
+        public List<ItemPedido> Itens { get;  set; }
+        public Cliente Cliente { get;  set; }
 
         public Pedido(Cliente cliente)
         {

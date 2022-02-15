@@ -16,13 +16,19 @@ namespace Order
 {
     public partial class Frm_CadastroDeClientes : Form
     {
-        public int rowIndex = -1;
+        public string connstring = string.Format("Server=localhost;Port=5432;" +
+         "User Id=postgres;Password=didi240694;Database=Projeto;");
         public NpgsqlConnection conn;
+        public string sql;
+        public NpgsqlCommand cmd;
+        public DataTable dt;
+        public int rowIndex = -1;
 
         public Frm_CadastroDeClientes()
         {
             InitializeComponent();
             LimparFormulario();
+          
         }
 
         private void LimparFormulario()
@@ -36,12 +42,12 @@ namespace Order
             
 
         }
-      
+
 
         Pessoa LeituraFormulario()
         {
 
-            
+
             string firstName;
             string lastName;
             Cpf cpf;
@@ -51,194 +57,237 @@ namespace Order
             firstName = Txt_NomeCliente.Text;
 
             lastName = Txt_SobrenomeCliente.Text;
-        
 
-             cpf = Mask_CPF.Text;
-     
+
+            cpf = Mask_CPF.Text;
+
 
             email = Txt_Email.Text;
-    
-                    birthDate = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
-        
-                var person = new Pessoa(firstName, lastName, birthDate, cpf, email);
+
+            birthDate = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
+
+            var person = new Pessoa(firstName, lastName, birthDate, cpf, email);
+
             return person;
-               
+
         }
+
+        //Pessoa LeituraFormulario()
+        //{
+
+        //    Pessoa P = new Pessoa();
+
+
+        //    P.PrimeiroNome = Txt_NomeCliente.Text;
+
+        //    P.UltimoNome = Txt_SobrenomeCliente.Text;
+
+
+        //    P.Cpf = Mask_CPF.Text; 
+
+
+        //    P.Email = Txt_Email.Text;
+
+        //    P.DataNascimento = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
+
+
+
+        //    return P;
+
+        //}
 
 
         private void Btn_SalvarNovoCliente_Click(object sender, EventArgs e)
         {
-
             try
             {
-                //Customer C = new Customer();
-               // Person P;
-                //Customer C;
+                // Pessoa P = new Pessoa();
                 Cliente C = new Cliente();
                 C.Pessoa = LeituraFormulario();
                 C.Pessoa.ValidaClasse();
-                C.Person.IncluirFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-                MessageBox.Show("Ok: Identificador incluido com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                C.Pessoa.inserir();
+                C.Pessoa.Select();
+               
+                MessageBox.Show("OK: Indentificador incluido com sucesso", "ByteBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (ValidationException Ex)
             {
-                MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Ex.Message, "ByteBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception Ex)
             {
-                MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Ex.Message, "ByteBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            //try
+            //{
+            //    //Customer C = new Customer();
+            //   // Person P;
+            //    //Customer C;
+            //    Cliente C = new Cliente();
+            //    C.Pessoa = LeituraFormulario();
+            //    C.Pessoa.ValidaClasse();
+            //    C.Person.IncluirFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //    MessageBox.Show("Ok: Identificador incluido com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (ValidationException Ex)
+            //{
+            //    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //catch (Exception Ex)
+            //{
+            //    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void Btn_BuscaCPF_Click(object sender, EventArgs e)
         {
-            if (Mask_CPF.Text == "")
-            {
-                MessageBox.Show("CPF do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //if (Mask_CPF.Text == "")
+            //{
+            //    MessageBox.Show("CPF do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            else
-            {
-                try
-                {
-                    Customer C = new Customer();
-                   // Person P;
-                    //Cliente C = new Cliente();
-                    C.Person = C.Person.BuscarFichario(Mask_CPF.Text, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //else
+            //{
+            //    try
+            //    {
+            //        Customer C = new Customer();
+            //       // Person P;
+            //        //Cliente C = new Cliente();
+            //        C.Person = C.Person.BuscarFichario(Mask_CPF.Text, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
                     
-                    if (C == null)
-                    {
-                        MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        EscreveFormulario(C);
-                    }
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //        if (C == null)
+            //        {
+            //            MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //        else
+            //        {
+            //            EscreveFormulario(C);
+            //        }
+            //    }
+            //    catch (Exception Ex)
+            //    {
+            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void Btn_AtualizacaoDoCliente_Click(object sender, EventArgs e)
         {
-            if (Mask_CPF.Text == "")
-            {
-                MessageBox.Show("CPF do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                try
-                {
+            //if (Mask_CPF.Text == "")
+            //{
+            //    MessageBox.Show("CPF do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    try
+            //    {
 
-                    Customer C = new Customer();
-                    // Cliente C = new Cliente();
-                    Person P;
-                    P = LeituraFormulario();
-                    C.Person.ValidaClasse();
-                   // C.ValidaComplemento();
-                    C.Person.AlterarFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-                    MessageBox.Show("Ok: Identificador alterado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                catch (ValidationException Ex)
-                {
-                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //        Customer C = new Customer();
+            //        // Cliente C = new Cliente();
+            //        Person P;
+            //        P = LeituraFormulario();
+            //        C.Person.ValidaClasse();
+            //       // C.ValidaComplemento();
+            //        C.Person.AlterarFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //        MessageBox.Show("Ok: Identificador alterado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    catch (ValidationException Ex)
+            //    {
+            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //    catch (Exception Ex)
+            //    {
+            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void Btn_ApagarCliente_Click(object sender, EventArgs e)
         {
-            if (Mask_CPF.Text == "")
-            {
-                MessageBox.Show("ID do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                try
-                {
-                    Customer C = new Customer();
-                    //Person C;
-                   // Cliente C = new Cliente();
-                    C.Person = C.Person.BuscarFichario(Mask_CPF.Text, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //if (Mask_CPF.Text == "")
+            //{
+            //    MessageBox.Show("ID do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //else
+            //{
+            //    try
+            //    {
+            //        Customer C = new Customer();
+            //        //Person C;
+            //        // Cliente C = new Cliente();
+            //        C.Person = C.Person.BuscarFichario(Mask_CPF.Text, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
 
-                    if (C == null)
-                    {
-                        MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                        EscreveFormulario(C);
-                        Frm_Questao Db = new Frm_Questao();
-                        Db.ShowDialog();
-                        if (Db.DialogResult == DialogResult.Yes)
-                        {
-                            C.Person.ApagarFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-                            MessageBox.Show("Ok: Identificador apagado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LimparFormulario();
-                        }
-                    }
-                }
+            //        if (C == null)
+            //        {
+            //            MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //        else
+            //        {
+            //            EscreveFormulario(C);
+            //            Frm_Questao Db = new Frm_Questao();
+            //            Db.ShowDialog();
+            //            if (Db.DialogResult == DialogResult.Yes)
+            //            {
+            //                C.Person.ApagarFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //                MessageBox.Show("Ok: Identificador apagado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //                LimparFormulario();
+            //            }
+            //        }
+            //    }
 
-                catch (Exception Ex)
-                {
-                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            //    catch (Exception Ex)
+            //    {
+            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
         }
 
         private void Btn_Buscar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Customer C = new Customer();
-               // Person P;
-               // Cliente C = new Cliente();
-                List<string> List = new List<string>();
-                List = C.Person.ListaFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-                if (List == null)
-                {
-                    MessageBox.Show("Base de dados está vazia. Não existe nenhum identificador cadastrado", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
+            //try
+            //{
+            //    Customer C = new Customer();
+            //   // Person P;
+            //   // Cliente C = new Cliente();
+            //    List<string> List = new List<string>();
+            //    List = C.Person.ListaFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //    if (List == null)
+            //    {
+            //        MessageBox.Show("Base de dados está vazia. Não existe nenhum identificador cadastrado", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //    else
+            //    {
 
-                    List<List<string>> ListaBusca = new List<List<string>>();
-                    for (int i = 0; i <= List.Count - 1; i++)
-                    {
-                        C.Person = Person.DeSerializedClassUnit(List[i]);
-                        ListaBusca.Add(new List<string> { C.Person.Cpf.ToString(), C.Person.FirstName, C.Person.LastName});
-                    }
-                    Frm_Busca FForm = new Frm_Busca(ListaBusca);
-                    FForm.ShowDialog();
-                    if (FForm.DialogResult == DialogResult.OK)
-                    {
-                        var idSelect = FForm.idSelect;
-                        C.Person = C.Person.BuscarFichario(idSelect, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-                        if (C == null)
-                        {
-                            MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            EscreveFormulario(C);
-                        }
-                    }
-                }
+            //        List<List<string>> ListaBusca = new List<List<string>>();
+            //        for (int i = 0; i <= List.Count - 1; i++)
+            //        {
+            //            C.Person = Person.DeSerializedClassUnit(List[i]);
+            //            ListaBusca.Add(new List<string> { C.Person.Cpf.ToString(), C.Person.FirstName, C.Person.LastName});
+            //        }
+            //        Frm_Busca FForm = new Frm_Busca(ListaBusca);
+            //        FForm.ShowDialog();
+            //        if (FForm.DialogResult == DialogResult.OK)
+            //        {
+            //            var idSelect = FForm.idSelect;
+            //            C.Person = C.Person.BuscarFichario(idSelect, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+            //            if (C == null)
+            //            {
+            //                MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //            else
+            //            {
+            //                EscreveFormulario(C);
+            //            }
+            //        }
+            //    }
 
-            }
+            //}
 
-            catch (Exception Ex)
-            {
+            //catch (Exception Ex)
+            //{
 
-                MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            //    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
 
 
@@ -267,9 +316,16 @@ namespace Order
 
         private void Frm_CadastroDeClientes_Load(object sender, EventArgs e)
         {
-            //conn = new NpgsqlConnection(connstring);
-            //Select();
+            // Pessoa p = new Pessoa();
+            Cliente C = new Cliente();
+           // C.Pessoa.conn = new NpgsqlConnection(C.Pessoa.connstring);
+            Dg_Clientes.DataSource = C.Pessoa.Select();
+           
         }
+
+     
+
+
     }
 }
 

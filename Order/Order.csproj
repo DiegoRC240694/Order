@@ -137,7 +137,6 @@
     <Compile Include="Frm_RegistroDePedido.Designer.cs">
       <DependentUpon>Frm_RegistroDePedido.cs</DependentUpon>
     </Compile>
-    <Compile Include="PostgresSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Exceptions\ExcecaoPedido.cs" />
     <Compile Include="Messages\Mensagem.cs" />

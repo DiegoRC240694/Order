@@ -112,14 +112,14 @@ namespace Order
 
         [Required(ErrorMessage = "Nome do Cliente é obrigatório.")]
         [StringLength(50, ErrorMessage = "Nome do Cliente deve ter no máximo 50 caracteres.")]
-        public string PrimeiroNome { get; set; }
+        public string PrimeiroNome { get; set; }    
 
         [Required(ErrorMessage = "Nome do Cliente é obrigatório.")]
         [StringLength(50, ErrorMessage = "Nome do Cliente deve ter no máximo 50 caracteres.")]
         public string UltimoNome { get; set; }
 
         [Required(ErrorMessage = "Data de Nascimento é obrigatório.")]
-        public DateTime DataNascimento { get; set; }  
+        public DateTime DataNascimento { get; set; } 
         
         public int Idade
         {
@@ -133,12 +133,15 @@ namespace Order
 
                 return idade;
             }
-            set { Idade = value; }
+            set 
+            { 
+                Idade = value; 
+            }
             
         }
         [Required(ErrorMessage = "CPF obrigatório.")]
         [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 dígitos.")]
-        public Cpf Cpf { get; set; }    
+        public Cpf Cpf { get; set; }
 
 
 
@@ -147,13 +150,44 @@ namespace Order
         public Email Email { get; set; }
 
 
-        public Pessoa(string primeiroNome, string ultimoNome, DateTime dataNascimento, Cpf cpf, Email email)
-        {
-            PrimeiroNome = primeiroNome.Trim();
-            UltimoNome = ultimoNome.Trim();
+        //public Pessoa(string primeiroNome, string ultimoNome, DateTime dataNascimento, Cpf cpf, Email email)
+        //{
+            
+        //    PrimeiroNome = primeiroNome.Trim();
+        //    UltimoNome = ultimoNome.Trim();
 
-            if (DateTime.Now.Year - dataNascimento.Year > 110)
-                throw new ExcecaoPedido("Idade superior a 110 anos não permitida!");
+        //    if (DateTime.Now.Year - dataNascimento.Year > 110 || DateTime.Now.Year - dataNascimento.Year < 18)
+        //        throw new ExcecaoPedido("Idade superior a 110 anos e Idade inferor a 18 não permitida!");
+
+        //    if (!cpf.EValido)
+        //        throw new ExcecaoPedido("Cpf inválido!");
+
+        //    if (!email.EValido)
+        //        throw new ExcecaoPedido("E-mail inválido!");
+           
+
+        //    DataNascimento = dataNascimento;
+        //    Cpf = cpf;
+        //    Email = email;
+        //    base.RegistroDataHora = DateTime.Now;
+        //    ValidaClasse();
+        //}
+        public void validapessoa()
+        {
+            
+            string ultimoNome;
+            Cpf cpf;
+            Email email;
+            DateTime dataNascimento;
+
+            
+            ultimoNome = UltimoNome.Trim();
+            cpf = Cpf;
+            email = Email;
+            dataNascimento = DataNascimento;
+
+            if (DateTime.Now.Year - dataNascimento.Year > 110 || DateTime.Now.Year - dataNascimento.Year < 18)
+                throw new ExcecaoPedido("Idade superior a 110 anos e Idade inferor a 18 não permitida!");
 
             if (!cpf.EValido)
                 throw new ExcecaoPedido("Cpf inválido!");
@@ -161,10 +195,15 @@ namespace Order
             if (!email.EValido)
                 throw new ExcecaoPedido("E-mail inválido!");
 
+
+            
+            UltimoNome = ultimoNome.Trim();
             DataNascimento = dataNascimento;
             Cpf = cpf;
             Email = email;
             base.RegistroDataHora = DateTime.Now;
+            ValidaClasse();
+
         }
 
         public string NomeCompleto =>
@@ -188,10 +227,12 @@ namespace Order
             }
         }
 
+        
+
         public string ToInsert()
         {
             string SQL;
-            SQL = @"INSERT INTO clientes_teste
+            SQL = $@"INSERT INTO clientes_teste
                         (nome,
                          sobrenome,
                          nome_completo,
@@ -200,15 +241,15 @@ namespace Order
                          cpf,
                          email,
                          registro_data_hora) 
-                        VALUES ";
-            SQL += "('" + this.PrimeiroNome + "'";
-            SQL += ",'" + this.UltimoNome + "'";
-            SQL += ",'" + this.NomeCompleto + "'";
-            SQL += ",'" + this.DataNascimento + "'";
-            SQL += "," +  this.Idade + ",";
-            SQL += "'" + this.Cpf + "'";
-            SQL += "," + this.Email + ",";
-            SQL += "'" + this.RegistroDataHora + ");";
+                        VALUES
+            ('{PrimeiroNome}',
+             '{UltimoNome}',
+             '{NomeCompleto}',
+             '{DataNascimento:yyyy-MM-dd HH:mm:ss}',
+             '{Idade}',
+             '{Cpf}',
+             '{Email}',
+            '{RegistroDataHora::yyyy-MM-dd HH:mm:ss}')";
             return SQL;
 
         }
@@ -232,23 +273,7 @@ namespace Order
 
         }
 
-        //public Pessoa DataRowToUnit(DataRow dr)
-        //{
-
-        //   // Pessoa P = new Pessoa(); 
-
-        //   // P.Id = (long)dr["id"];
-        //   // P.PrimeiroNome = dr["nome"].ToString();
-        //   // P.UltimoNome = dr["sobrenome"].ToString();
-        //   //// P.NomeCompleto = dr["nome_completo"].ToString();
-        //   // P.DataNascimento = Convert.ToDateTime(dr["data_nascimento"]);
-        //   // P.Idade = (int)dr["idade"];
-        //   //// P.Cpf = dr["cpf"].ToString();
-        //   // P.Email = dr["email"].ToString();
-        //   // P.RegistroDataHora = Convert.ToDateTime(dr["registro_data_hora"]);
-        //   // return P;
-
-        //}
+        
 
         public DataTable Select()
         {
@@ -261,7 +286,7 @@ namespace Order
                 {
                     // abre a conexão com o PgSQL e define a instrução SQL
                     conn.Open();
-                    string cmdSeleciona = "Select * from clientes_teste order by id";
+                    string cmdSeleciona = "Select * from clientes order by id";
 
                     using (NpgsqlDataAdapter Adpt = new NpgsqlDataAdapter(cmdSeleciona, conn))
                     {

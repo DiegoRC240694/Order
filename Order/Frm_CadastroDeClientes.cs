@@ -23,6 +23,7 @@ namespace Order
         public NpgsqlCommand cmd;
         public DataTable dt;
         public int rowIndex = -1;
+       
 
         public Frm_CadastroDeClientes()
         {
@@ -44,99 +45,97 @@ namespace Order
         }
 
 
-        Pessoa LeituraFormulario()
+       private Pessoa LeituraFormulario()
         {
 
+            //string primeiroNome;
+            //string ultimoNome;
+            //Cpf cpf;
+            //Email email;
+            //DateTime dataNascimento;
+            Pessoa P = new Pessoa();
 
-            string firstName;
-            string lastName;
-            Cpf cpf;
-            Email email;
-            DateTime birthDate;
+            P.PrimeiroNome = Txt_NomeCliente.Text;
 
-            firstName = Txt_NomeCliente.Text;
-
-            lastName = Txt_SobrenomeCliente.Text;
-
-
-            cpf = Mask_CPF.Text;
+            P.UltimoNome = Txt_SobrenomeCliente.Text;
 
 
-            email = Txt_Email.Text;
+            P.Cpf = Mask_CPF.Text;
 
-            birthDate = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
 
-            var person = new Pessoa(firstName, lastName, birthDate, cpf, email);
+            P.Email = Txt_Email.Text;
 
-            return person;
+            P.DataNascimento = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
+            
+            try
+            {
+                //var pessoa = new Pessoa(primeiroNome, ultimoNome, dataNascimento, cpf, email);
+                P.validapessoa();
+                var cliente = new Cliente()
+                {
+                    //Pessoa = pessoa,
+                    Ativo = true
+                };
+
+                return P;
+            }
+            catch (ValidationException)
+            {
+                //MessageBox.Show("Erro ao cadastrar cliente:");
+                //MessageBox.Show(ex.Message);
+                throw;
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("Erro desconhecido:");
+                //MessageBox.Show(ex.Message);
+                throw;
+            }
+
+           
 
         }
-
-        //Pessoa LeituraFormulario()
-        //{
-
-        //    Pessoa P = new Pessoa();
-
-
-        //    P.PrimeiroNome = Txt_NomeCliente.Text;
-
-        //    P.UltimoNome = Txt_SobrenomeCliente.Text;
-
-
-        //    P.Cpf = Mask_CPF.Text; 
-
-
-        //    P.Email = Txt_Email.Text;
-
-        //    P.DataNascimento = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
-
-
-
-        //    return P;
-
-        //}
 
 
         private void Btn_SalvarNovoCliente_Click(object sender, EventArgs e)
         {
-            try
+            int result = 0;
+            if (rowIndex < 0)
             {
-                // Pessoa P = new Pessoa();
                 Cliente C = new Cliente();
-                C.Pessoa = LeituraFormulario();
-                C.Pessoa.ValidaClasse();
-                C.Pessoa.inserir();
-                C.Pessoa.Select();
-               
-                MessageBox.Show("OK: Indentificador incluido com sucesso", "ByteBank", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                try
+                {
+                   
+                    LeituraFormulario();
+                   
+                    C.inserir();
+                    Dg_Clientes.DataSource = C.Select();
+                    Dg_Clientes.DataSource = null;
+                    result++;
+                    if (result > 0)
+                    {
+                        MessageBox.Show("OK: Indentificador incluido com sucesso", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        C.Pessoa.Select();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao inserir");
+                        
+                    }
+
+                }
+                catch (ValidationException Ex)
+                {
+                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception Ex)
+                {
+                    
+                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            catch (ValidationException Ex)
-            {
-                MessageBox.Show(Ex.Message, "ByteBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception Ex)
-            {
-                MessageBox.Show(Ex.Message, "ByteBank", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            //try
-            //{
-            //    //Customer C = new Customer();
-            //   // Person P;
-            //    //Customer C;
-            //    Cliente C = new Cliente();
-            //    C.Pessoa = LeituraFormulario();
-            //    C.Pessoa.ValidaClasse();
-            //    C.Person.IncluirFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-            //    MessageBox.Show("Ok: Identificador incluido com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
-            //catch (ValidationException Ex)
-            //{
-            //    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //catch (Exception Ex)
-            //{
-            //    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
+            
+
         }
 
         private void Btn_BuscaCPF_Click(object sender, EventArgs e)
@@ -304,10 +303,10 @@ namespace Order
             if (e.RowIndex >= 0)
             {
                 rowIndex = e.RowIndex;
-                Txt_NomeCliente.Text = Dg_Clientes.Rows[e.RowIndex].Cells["primeironome"].Value.ToString();
-                Txt_SobrenomeCliente.Text = Dg_Clientes.Rows[e.RowIndex].Cells["ultimonome"].Value.ToString();
-                Date_DataDeNascimento.Value = Convert.ToDateTime(Dg_Clientes.Rows[e.RowIndex].Cells["datanascimento"].Value, new CultureInfo("pt-BR"));
-                Mask_CPF.Text = Dg_Clientes.Rows[e.RowIndex].Cells["cpf"].Value.ToString();
+                Txt_NomeCliente.Text = Dg_Clientes.Rows[e.RowIndex].Cells["nome"].Value.ToString();
+                Txt_SobrenomeCliente.Text = Dg_Clientes.Rows[e.RowIndex].Cells["sobrenome"].Value.ToString();
+                Date_DataDeNascimento.Value = Convert.ToDateTime(Dg_Clientes.Rows[e.RowIndex].Cells["data_nascimento"].Value, new CultureInfo("pt-BR"));
+                Mask_CPF.Text = Dg_Clientes.Rows[e.RowIndex].Cells["cpf"].Value.ToString();//////
                 Txt_Email.Text = Dg_Clientes.Rows[e.RowIndex].Cells["email"].Value.ToString();
 
 
@@ -316,14 +315,17 @@ namespace Order
 
         private void Frm_CadastroDeClientes_Load(object sender, EventArgs e)
         {
-            // Pessoa p = new Pessoa();
+             
             Cliente C = new Cliente();
-           // C.Pessoa.conn = new NpgsqlConnection(C.Pessoa.connstring);
-            Dg_Clientes.DataSource = C.Pessoa.Select();
-           
+            C.conn = new NpgsqlConnection(C.connstring);
+            Dg_Clientes.DataSource = C.Select();
+           // Dg_Clientes.DataSource = null;
+
+
+
         }
 
-     
+       
 
 
     }

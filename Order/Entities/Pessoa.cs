@@ -140,69 +140,34 @@ namespace Order
             
         }
         [Required(ErrorMessage = "CPF obrigatório.")]
-        [StringLength(11, MinimumLength = 11, ErrorMessage = "CPF deve ter 11 dígitos.")]
         public Cpf Cpf { get; set; }
 
-
-
         [Required(ErrorMessage = "Email é obrigatório.")]
-        [StringLength(50, ErrorMessage = "Email deve ter no máximo 50 caracteres.")]
-        public Email Email { get; set; }
+        public Email Email { get; set; } 
 
 
-        //public Pessoa(string primeiroNome, string ultimoNome, DateTime dataNascimento, Cpf cpf, Email email)
-        //{
-            
-        //    PrimeiroNome = primeiroNome.Trim();
-        //    UltimoNome = ultimoNome.Trim();
-
-        //    if (DateTime.Now.Year - dataNascimento.Year > 110 || DateTime.Now.Year - dataNascimento.Year < 18)
-        //        throw new ExcecaoPedido("Idade superior a 110 anos e Idade inferor a 18 não permitida!");
-
-        //    if (!cpf.EValido)
-        //        throw new ExcecaoPedido("Cpf inválido!");
-
-        //    if (!email.EValido)
-        //        throw new ExcecaoPedido("E-mail inválido!");
-           
-
-        //    DataNascimento = dataNascimento;
-        //    Cpf = cpf;
-        //    Email = email;
-        //    base.RegistroDataHora = DateTime.Now;
-        //    ValidaClasse();
-        //}
-        public void validapessoa()
+        public Pessoa(string primeiroNome, string ultimoNome, DateTime dataNascimento, Cpf cpf, Email email)
         {
-            
-            string ultimoNome;
-            Cpf cpf;
-            Email email;
-            DateTime dataNascimento;
-
-            
-            ultimoNome = UltimoNome.Trim();
-            cpf = Cpf;
-            email = Email;
-            dataNascimento = DataNascimento;
+            if(primeiroNome == "")
+                throw new ValidationException("Nome do Cliente é obrigatório.");
+            if(ultimoNome == "")
+                throw new ValidationException("Sobrenome do Cliente é obrigatório.");
 
             if (DateTime.Now.Year - dataNascimento.Year > 110 || DateTime.Now.Year - dataNascimento.Year < 18)
-                throw new ExcecaoPedido("Idade superior a 110 anos e Idade inferor a 18 não permitida!");
+                throw new ValidationException("Idade superior a 110 anos e Idade inferor a 18 não permitida!");
 
             if (!cpf.EValido)
-                throw new ExcecaoPedido("Cpf inválido!");
+                throw new ValidationException("Cpf inválido!");
 
             if (!email.EValido)
-                throw new ExcecaoPedido("E-mail inválido!");
+                throw new ValidationException("E-mail inválido!");
 
-
-            
+            PrimeiroNome = primeiroNome.Trim();
             UltimoNome = ultimoNome.Trim();
             DataNascimento = dataNascimento;
             Cpf = cpf;
             Email = email;
             base.RegistroDataHora = DateTime.Now;
-            ValidaClasse();
 
         }
 
@@ -272,8 +237,6 @@ namespace Order
             return SQL;
 
         }
-
-        
 
         public DataTable Select()
         {

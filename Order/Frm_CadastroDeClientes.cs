@@ -25,6 +25,8 @@ namespace Order
         public int rowIndex = -1;
        
 
+
+
         public Frm_CadastroDeClientes()
         {
             InitializeComponent();
@@ -41,86 +43,57 @@ namespace Order
             Txt_Email.Text = "";
             Date_DataDeNascimento.Value = DateTime.Now.Date;
             
-
         }
 
 
-       private Pessoa LeituraFormulario()
+        Pessoa LeituraFormulario()
         {
-
-            //string primeiroNome;
-            //string ultimoNome;
-            //Cpf cpf;
-            //Email email;
-            //DateTime dataNascimento;
-            Pessoa P = new Pessoa();
-
-            P.PrimeiroNome = Txt_NomeCliente.Text;
-
-            P.UltimoNome = Txt_SobrenomeCliente.Text;
-
-
-            P.Cpf = Mask_CPF.Text;
-
-
-            P.Email = Txt_Email.Text;
-
-            P.DataNascimento = Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR"));
-            
             try
             {
-                //var pessoa = new Pessoa(primeiroNome, ultimoNome, dataNascimento, cpf, email);
-                P.validapessoa();
-                var cliente = new Cliente()
-                {
-                    //Pessoa = pessoa,
-                    Ativo = true
-                };
 
-                return P;
+                var pessoa = new Pessoa(Txt_NomeCliente.Text, Txt_SobrenomeCliente.Text, 
+                    Convert.ToDateTime(Date_DataDeNascimento.Value.Date, new CultureInfo("pt-BR")),
+                   Mask_CPF.Text, Txt_Email.Text);
+            
+                return pessoa;
             }
             catch (ValidationException)
             {
-                //MessageBox.Show("Erro ao cadastrar cliente:");
-                //MessageBox.Show(ex.Message);
                 throw;
             }
             catch (Exception)
             {
-                //MessageBox.Show("Erro desconhecido:");
-                //MessageBox.Show(ex.Message);
                 throw;
             }
 
-           
-
         }
-
-
+        
         private void Btn_SalvarNovoCliente_Click(object sender, EventArgs e)
         {
             int result = 0;
+            Cliente cliente = new Cliente();
+            
             if (rowIndex < 0)
             {
-                Cliente C = new Cliente();
+
                 try
                 {
                    
-                    LeituraFormulario();
-                   
-                    C.inserir();
-                    Dg_Clientes.DataSource = C.Select();
+                    cliente.Pessoa = LeituraFormulario();
+                    cliente.Pessoa.ValidaClasse();
+                    cliente.inserir();
                     Dg_Clientes.DataSource = null;
+                    Dg_Clientes.DataSource = cliente.Select();
                     result++;
                     if (result > 0)
                     {
-                        MessageBox.Show("OK: Indentificador incluido com sucesso", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        C.Pessoa.Select();
+                        MessageBox.Show("OK: Cliente cadastrado com sucesso", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cliente.Select();
                     }
                     else
                     {
-                        MessageBox.Show("Falha ao inserir");
-                        
+                    MessageBox.Show("Falha ao inserir");
+
                     }
 
                 }
@@ -130,11 +103,38 @@ namespace Order
                 }
                 catch (Exception Ex)
                 {
-                    
                     MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            
+            else
+            {
+                var idCliente = int.Parse(Dg_Clientes.Rows[rowIndex].Cells["id"].Value.ToString());
+                try
+                {
+                    cliente.Pessoa = LeituraFormulario();
+                    cliente.Pessoa.ValidaClasse();
+                    cliente.Id = idCliente;
+                    cliente.update();
+                    Dg_Clientes.DataSource = null;
+                    Dg_Clientes.DataSource = cliente.Select();
+                    result++;
+                    if (result > 0)
+                    {
+                        MessageBox.Show("OK: Atualizaçao do cliente feito sucesso", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        cliente.Select();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao atualizar");
+
+                    }
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
 
         }
 
@@ -170,75 +170,47 @@ namespace Order
             //}
         }
 
-        private void Btn_AtualizacaoDoCliente_Click(object sender, EventArgs e)
-        {
-            //if (Mask_CPF.Text == "")
-            //{
-            //    MessageBox.Show("CPF do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //else
-            //{
-            //    try
-            //    {
-
-            //        Customer C = new Customer();
-            //        // Cliente C = new Cliente();
-            //        Person P;
-            //        P = LeituraFormulario();
-            //        C.Person.ValidaClasse();
-            //       // C.ValidaComplemento();
-            //        C.Person.AlterarFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-            //        MessageBox.Show("Ok: Identificador alterado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    }
-            //    catch (ValidationException Ex)
-            //    {
-            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //    catch (Exception Ex)
-            //    {
-            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
-        }
 
         private void Btn_ApagarCliente_Click(object sender, EventArgs e)
         {
-            //if (Mask_CPF.Text == "")
-            //{
-            //    MessageBox.Show("ID do Cliente vazio.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        Customer C = new Customer();
-            //        //Person C;
-            //        // Cliente C = new Cliente();
-            //        C.Person = C.Person.BuscarFichario(Mask_CPF.Text, "C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
+           
+            
+            Cliente cliente = new Cliente();
+            var idCliente = int.Parse(Dg_Clientes.Rows[rowIndex].Cells["id"].Value.ToString());
+            if (idCliente < 0)
+            {
+                MessageBox.Show("Escolha o cliente para excluir.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                try
+                {
 
-            //        if (C == null)
-            //        {
-            //            MessageBox.Show("Identificador não encontrado.", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //        }
-            //        else
-            //        {
-            //            EscreveFormulario(C);
-            //            Frm_Questao Db = new Frm_Questao();
-            //            Db.ShowDialog();
-            //            if (Db.DialogResult == DialogResult.Yes)
-            //            {
-            //                C.Person.ApagarFichario("C:\\Users\\DiegoRodriguesCardos\\source\\repos\\Order\\Fichario");
-            //                MessageBox.Show("Ok: Identificador apagado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //                LimparFormulario();
-            //            }
-            //        }
-            //    }
+                    cliente.Pessoa = LeituraFormulario();
+                    cliente.Id = idCliente;
+                    Frm_Questao Db = new Frm_Questao();
+                    Db.ShowDialog();
+                    if (Db.DialogResult == DialogResult.Yes)
+                    {
+                        cliente.Delete();
+                        Dg_Clientes.DataSource = null;
+                        Dg_Clientes.DataSource = cliente.Select();
+                        MessageBox.Show("Ok: Cliente apagado com sucesso ", "Loja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LimparFormulario();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Falha ao apagar cliente");
 
-            //    catch (Exception Ex)
-            //    {
-            //        MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
+                    }
+    
+                }
+
+                catch (Exception Ex)
+                {
+                    MessageBox.Show(Ex.Message, "Loja", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void Btn_Buscar_Click(object sender, EventArgs e)
@@ -318,11 +290,9 @@ namespace Order
              
             Cliente C = new Cliente();
             C.conn = new NpgsqlConnection(C.connstring);
+            Dg_Clientes.DataSource = null;
             Dg_Clientes.DataSource = C.Select();
-           // Dg_Clientes.DataSource = null;
-
-
-
+            
         }
 
        

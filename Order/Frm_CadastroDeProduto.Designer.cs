@@ -37,7 +37,10 @@ namespace Order
             this.Lbl_ValorUnitarioDoProduto = new System.Windows.Forms.Label();
             this.Lbl_CadastroDeProduto = new System.Windows.Forms.Label();
             this.btn_Salvar = new System.Windows.Forms.Button();
-            this.Btn_VisualizarProdutos = new System.Windows.Forms.Button();
+            this.Btn_Apagar = new System.Windows.Forms.Button();
+            this.Btn_Limpar = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Lbl_DescricaoDoProduto
@@ -45,22 +48,22 @@ namespace Order
             this.Lbl_DescricaoDoProduto.AutoSize = true;
             this.Lbl_DescricaoDoProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_DescricaoDoProduto.ForeColor = System.Drawing.Color.White;
-            this.Lbl_DescricaoDoProduto.Location = new System.Drawing.Point(230, 91);
+            this.Lbl_DescricaoDoProduto.Location = new System.Drawing.Point(0, 63);
             this.Lbl_DescricaoDoProduto.Name = "Lbl_DescricaoDoProduto";
-            this.Lbl_DescricaoDoProduto.Size = new System.Drawing.Size(153, 17);
+            this.Lbl_DescricaoDoProduto.Size = new System.Drawing.Size(79, 17);
             this.Lbl_DescricaoDoProduto.TabIndex = 0;
-            this.Lbl_DescricaoDoProduto.Text = "Descrição do Produto :";
+            this.Lbl_DescricaoDoProduto.Text = "Descrição :";
             // 
             // Txt_DescricaoDoProduto
             // 
-            this.Txt_DescricaoDoProduto.Location = new System.Drawing.Point(387, 91);
+            this.Txt_DescricaoDoProduto.Location = new System.Drawing.Point(76, 63);
             this.Txt_DescricaoDoProduto.Name = "Txt_DescricaoDoProduto";
             this.Txt_DescricaoDoProduto.Size = new System.Drawing.Size(113, 20);
             this.Txt_DescricaoDoProduto.TabIndex = 1;
             // 
             // Txt_QuantidadeDisponivel
             // 
-            this.Txt_QuantidadeDisponivel.Location = new System.Drawing.Point(387, 121);
+            this.Txt_QuantidadeDisponivel.Location = new System.Drawing.Point(363, 63);
             this.Txt_QuantidadeDisponivel.Name = "Txt_QuantidadeDisponivel";
             this.Txt_QuantidadeDisponivel.Size = new System.Drawing.Size(113, 20);
             this.Txt_QuantidadeDisponivel.TabIndex = 3;
@@ -70,7 +73,7 @@ namespace Order
             this.Lbl_QuantidadeDisponivel.AutoSize = true;
             this.Lbl_QuantidadeDisponivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_QuantidadeDisponivel.ForeColor = System.Drawing.Color.White;
-            this.Lbl_QuantidadeDisponivel.Location = new System.Drawing.Point(226, 121);
+            this.Lbl_QuantidadeDisponivel.Location = new System.Drawing.Point(202, 63);
             this.Lbl_QuantidadeDisponivel.Name = "Lbl_QuantidadeDisponivel";
             this.Lbl_QuantidadeDisponivel.Size = new System.Drawing.Size(159, 17);
             this.Lbl_QuantidadeDisponivel.TabIndex = 2;
@@ -78,9 +81,9 @@ namespace Order
             // 
             // Txt_ValorUnitarioDoProduto
             // 
-            this.Txt_ValorUnitarioDoProduto.Location = new System.Drawing.Point(387, 152);
+            this.Txt_ValorUnitarioDoProduto.Location = new System.Drawing.Point(613, 63);
             this.Txt_ValorUnitarioDoProduto.Name = "Txt_ValorUnitarioDoProduto";
-            this.Txt_ValorUnitarioDoProduto.Size = new System.Drawing.Size(113, 20);
+            this.Txt_ValorUnitarioDoProduto.Size = new System.Drawing.Size(92, 20);
             this.Txt_ValorUnitarioDoProduto.TabIndex = 5;
             // 
             // Lbl_ValorUnitarioDoProduto
@@ -88,11 +91,11 @@ namespace Order
             this.Lbl_ValorUnitarioDoProduto.AutoSize = true;
             this.Lbl_ValorUnitarioDoProduto.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Lbl_ValorUnitarioDoProduto.ForeColor = System.Drawing.Color.White;
-            this.Lbl_ValorUnitarioDoProduto.Location = new System.Drawing.Point(211, 152);
+            this.Lbl_ValorUnitarioDoProduto.Location = new System.Drawing.Point(483, 63);
             this.Lbl_ValorUnitarioDoProduto.Name = "Lbl_ValorUnitarioDoProduto";
-            this.Lbl_ValorUnitarioDoProduto.Size = new System.Drawing.Size(176, 17);
+            this.Lbl_ValorUnitarioDoProduto.Size = new System.Drawing.Size(123, 17);
             this.Lbl_ValorUnitarioDoProduto.TabIndex = 4;
-            this.Lbl_ValorUnitarioDoProduto.Text = "Valor Unitário do Produto :";
+            this.Lbl_ValorUnitarioDoProduto.Text = "Valor do Produto :";
             // 
             // Lbl_CadastroDeProduto
             // 
@@ -107,23 +110,45 @@ namespace Order
             // 
             // btn_Salvar
             // 
-            this.btn_Salvar.Location = new System.Drawing.Point(323, 227);
+            this.btn_Salvar.Location = new System.Drawing.Point(519, 102);
             this.btn_Salvar.Name = "btn_Salvar";
-            this.btn_Salvar.Size = new System.Drawing.Size(75, 23);
+            this.btn_Salvar.Size = new System.Drawing.Size(70, 23);
             this.btn_Salvar.TabIndex = 7;
             this.btn_Salvar.Text = "Salvar";
             this.btn_Salvar.UseVisualStyleBackColor = true;
             this.btn_Salvar.Click += new System.EventHandler(this.btn_Salvar_Click);
             // 
-            // Btn_VisualizarProdutos
+            // Btn_Apagar
             // 
-            this.Btn_VisualizarProdutos.Location = new System.Drawing.Point(425, 227);
-            this.Btn_VisualizarProdutos.Name = "Btn_VisualizarProdutos";
-            this.Btn_VisualizarProdutos.Size = new System.Drawing.Size(106, 23);
-            this.Btn_VisualizarProdutos.TabIndex = 9;
-            this.Btn_VisualizarProdutos.Text = "Visualizar Produtos";
-            this.Btn_VisualizarProdutos.UseVisualStyleBackColor = true;
-            this.Btn_VisualizarProdutos.Click += new System.EventHandler(this.Btn_VisualizarProdutos_Click);
+            this.Btn_Apagar.Location = new System.Drawing.Point(613, 102);
+            this.Btn_Apagar.Name = "Btn_Apagar";
+            this.Btn_Apagar.Size = new System.Drawing.Size(70, 23);
+            this.Btn_Apagar.TabIndex = 9;
+            this.Btn_Apagar.Text = "Apagar";
+            this.Btn_Apagar.UseVisualStyleBackColor = true;
+            this.Btn_Apagar.Click += new System.EventHandler(this.Btn_VisualizarProdutos_Click);
+            // 
+            // Btn_Limpar
+            // 
+            this.Btn_Limpar.Location = new System.Drawing.Point(707, 102);
+            this.Btn_Limpar.Name = "Btn_Limpar";
+            this.Btn_Limpar.Size = new System.Drawing.Size(75, 23);
+            this.Btn_Limpar.TabIndex = 10;
+            this.Btn_Limpar.Text = "Limpar";
+            this.Btn_Limpar.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 142);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(770, 295);
+            this.dataGridView1.TabIndex = 11;
             // 
             // Frm_CadastroDeProduto
             // 
@@ -131,7 +156,9 @@ namespace Order
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(794, 449);
-            this.Controls.Add(this.Btn_VisualizarProdutos);
+            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Btn_Limpar);
+            this.Controls.Add(this.Btn_Apagar);
             this.Controls.Add(this.btn_Salvar);
             this.Controls.Add(this.Lbl_CadastroDeProduto);
             this.Controls.Add(this.Txt_ValorUnitarioDoProduto);
@@ -143,6 +170,7 @@ namespace Order
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_CadastroDeProduto";
             this.Text = "Frm_CadastroDeProduto";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,6 +186,8 @@ namespace Order
         private System.Windows.Forms.Label Lbl_ValorUnitarioDoProduto;
         private System.Windows.Forms.Label Lbl_CadastroDeProduto;
         private System.Windows.Forms.Button btn_Salvar;
-        private System.Windows.Forms.Button Btn_VisualizarProdutos;
+        private System.Windows.Forms.Button Btn_Apagar;
+        private System.Windows.Forms.Button Btn_Limpar;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

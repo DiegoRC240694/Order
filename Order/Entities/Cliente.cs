@@ -21,23 +21,6 @@ namespace Order
         public Pessoa Pessoa { get; set; }
         public bool Ativo { get; set; }
 
-        public void ValidaClasse()
-        {
-            ValidationContext context = new ValidationContext(this, serviceProvider: null, items: null);
-            List<ValidationResult> results = new List<ValidationResult>();
-            bool isValid = Validator.TryValidateObject(this, context, results, true);
-
-            if (isValid == false)
-            {
-                StringBuilder sbrErrors = new StringBuilder();
-                foreach (var validationResult in results)
-                {
-                    sbrErrors.AppendLine(validationResult.ErrorMessage);
-                }
-                throw new ValidationException(sbrErrors.ToString());
-            }
-        }
-
         public DataTable Select()
         {
 
@@ -72,6 +55,37 @@ namespace Order
 
             return dt;
 
+        }
+
+        public void Delete()
+        {
+            try
+            {
+                using (conn = new NpgsqlConnection(connstring))
+                {
+                    //abre a conexao                
+                    conn.Open();
+
+                    string cmdDeletar = $@"Delete From clientes_teste Where id = '{Id}'";
+
+                    using (cmd = new NpgsqlCommand(cmdDeletar, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void inserir()
@@ -130,9 +144,60 @@ namespace Order
              '{Pessoa.Email}',
             '{RegistroDataHora::yyyy-MM-dd HH:mm:ss}')";
                 return SQL;
-          
-           
+         
+        }
+
+        public string ToUpdate()
+        {
+            string SQL;
+            SQL = $@"UPDATE clientes_teste
+                        SET 
+             nome = '{Pessoa.PrimeiroNome}',
+             sobrenome = '{Pessoa.UltimoNome}',
+             nome_completo = '{Pessoa.NomeCompleto}',
+             data_nascimento = '{Pessoa.DataNascimento:yyyy-MM-dd HH:mm:ss}',
+             idade = {Pessoa.Idade},
+             cpf = '{Pessoa.Cpf}',
+             email = '{Pessoa.Email}',
+             registro_data_hora = '{AlteracaoDataHora:yyyy-MM-dd HH:mm:ss}'
+             WHERE id = {Id}";
+            return SQL;
 
         }
+            public void update()
+          {
+            try
+            {
+                using (conn = new NpgsqlConnection(connstring))
+                {
+                    //Abra a conexão com o PgSQL                  
+                    conn.Open();
+                    string sql;
+                    sql = ToUpdate();
+                    using (cmd = new NpgsqlCommand(sql, conn))
+                    {
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+
+            catch (NpgsqlException ex)
+            {
+                throw ex;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+       
+
     }
 }

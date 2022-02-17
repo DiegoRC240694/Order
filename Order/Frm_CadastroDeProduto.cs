@@ -12,7 +12,8 @@ using System.Windows.Forms;
 namespace Order
 {
     public partial class Frm_CadastroDeProduto : Form
-    {
+    { //var valorFormatado = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", valor)
+        //var valorFormatado = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "US$ {0:#,###.##}", valor)
         public Frm_CadastroDeProduto()
         {
             InitializeComponent();

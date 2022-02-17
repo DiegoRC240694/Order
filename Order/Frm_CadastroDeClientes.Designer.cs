@@ -43,7 +43,6 @@ namespace Order
             this.Btn_SalvarNovoCliente = new System.Windows.Forms.Button();
             this.Btn_ApagarCliente = new System.Windows.Forms.Button();
             this.Btn_LimparTela = new System.Windows.Forms.Button();
-            this.Btn_AtualizacaoDoCliente = new System.Windows.Forms.Button();
             this.Btn_Buscar = new System.Windows.Forms.Button();
             this.Btn_BuscaCPF = new System.Windows.Forms.Button();
             this.Dg_Clientes = new System.Windows.Forms.DataGridView();
@@ -156,7 +155,7 @@ namespace Order
             this.Date_DataDeNascimento.Name = "Date_DataDeNascimento";
             this.Date_DataDeNascimento.Size = new System.Drawing.Size(97, 20);
             this.Date_DataDeNascimento.TabIndex = 13;
-            this.Date_DataDeNascimento.Value = new System.DateTime(2004, 1, 1, 0, 0, 0, 0);
+            this.Date_DataDeNascimento.Value = new System.DateTime(2022, 2, 17, 0, 0, 0, 0);
             // 
             // Btn_SalvarNovoCliente
             // 
@@ -187,16 +186,6 @@ namespace Order
             this.Btn_LimparTela.Text = "Limpar";
             this.Btn_LimparTela.UseVisualStyleBackColor = true;
             this.Btn_LimparTela.Click += new System.EventHandler(this.Btn_LimparTela_Click);
-            // 
-            // Btn_AtualizacaoDoCliente
-            // 
-            this.Btn_AtualizacaoDoCliente.Location = new System.Drawing.Point(735, 12);
-            this.Btn_AtualizacaoDoCliente.Name = "Btn_AtualizacaoDoCliente";
-            this.Btn_AtualizacaoDoCliente.Size = new System.Drawing.Size(131, 23);
-            this.Btn_AtualizacaoDoCliente.TabIndex = 17;
-            this.Btn_AtualizacaoDoCliente.Text = "Atualização Do Cliente";
-            this.Btn_AtualizacaoDoCliente.UseVisualStyleBackColor = true;
-            this.Btn_AtualizacaoDoCliente.Click += new System.EventHandler(this.Btn_AtualizacaoDoCliente_Click);
             // 
             // Btn_Buscar
             // 
@@ -243,7 +232,6 @@ namespace Order
             this.Controls.Add(this.Dg_Clientes);
             this.Controls.Add(this.Btn_BuscaCPF);
             this.Controls.Add(this.Btn_Buscar);
-            this.Controls.Add(this.Btn_AtualizacaoDoCliente);
             this.Controls.Add(this.Btn_LimparTela);
             this.Controls.Add(this.Btn_ApagarCliente);
             this.Controls.Add(this.Btn_SalvarNovoCliente);
@@ -284,7 +272,6 @@ namespace Order
         private System.Windows.Forms.Button Btn_SalvarNovoCliente;
         private System.Windows.Forms.Button Btn_ApagarCliente;
         private System.Windows.Forms.Button Btn_LimparTela;
-        private System.Windows.Forms.Button Btn_AtualizacaoDoCliente;
         private System.Windows.Forms.Button Btn_Buscar;
         private System.Windows.Forms.Button Btn_BuscaCPF;
         private System.Windows.Forms.DataGridView Dg_Clientes;

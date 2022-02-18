@@ -8,8 +8,8 @@ namespace Order
 {
     public class ItemPedido : BaseEntidade
     {
-        public Produtos Produtos { get; private set; }
-        public int Quantidade { get; private set; }
+        public Produtos Produtos { get;  set; }
+        public int Quantidade { get;  set; }
         public decimal ValorTotal => Quantidade * Produtos.ValorUnitario;
 
         public ItemPedido(Produtos produtos, int quantidade)

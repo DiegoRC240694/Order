@@ -38,15 +38,12 @@ namespace Order
             this.MenuVertical = new System.Windows.Forms.Panel();
             this.btnsalir = new System.Windows.Forms.PictureBox();
             this.Painel_SubMenuVendas = new System.Windows.Forms.Panel();
-            this.Btn_VisualizarVendas = new System.Windows.Forms.Button();
             this.Btn_CadastroDeVendas = new System.Windows.Forms.Button();
             this.Btn_Vendas = new System.Windows.Forms.Button();
             this.Painel_SubMenuProdutos = new System.Windows.Forms.Panel();
-            this.Btn_VisualizarProdutos = new System.Windows.Forms.Button();
             this.Btn_CadastroDeProdutos = new System.Windows.Forms.Button();
             this.Btn_Produtos = new System.Windows.Forms.Button();
             this.Painel_SubMenuClientes = new System.Windows.Forms.Panel();
-            this.Btn_VisualizarClientes = new System.Windows.Forms.Button();
             this.Btn_CadastroDeClientes = new System.Windows.Forms.Button();
             this.Btn_Clientes = new System.Windows.Forms.Button();
             this.Painel_Logo = new System.Windows.Forms.Panel();
@@ -166,30 +163,12 @@ namespace Order
             // Painel_SubMenuVendas
             // 
             this.Painel_SubMenuVendas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.Painel_SubMenuVendas.Controls.Add(this.Btn_VisualizarVendas);
             this.Painel_SubMenuVendas.Controls.Add(this.Btn_CadastroDeVendas);
             this.Painel_SubMenuVendas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Painel_SubMenuVendas.Location = new System.Drawing.Point(0, 394);
+            this.Painel_SubMenuVendas.Location = new System.Drawing.Point(0, 309);
             this.Painel_SubMenuVendas.Name = "Painel_SubMenuVendas";
-            this.Painel_SubMenuVendas.Size = new System.Drawing.Size(200, 87);
+            this.Painel_SubMenuVendas.Size = new System.Drawing.Size(200, 47);
             this.Painel_SubMenuVendas.TabIndex = 5;
-            // 
-            // Btn_VisualizarVendas
-            // 
-            this.Btn_VisualizarVendas.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Btn_VisualizarVendas.FlatAppearance.BorderSize = 0;
-            this.Btn_VisualizarVendas.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.Btn_VisualizarVendas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.Btn_VisualizarVendas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_VisualizarVendas.ForeColor = System.Drawing.Color.Silver;
-            this.Btn_VisualizarVendas.Location = new System.Drawing.Point(0, 40);
-            this.Btn_VisualizarVendas.Name = "Btn_VisualizarVendas";
-            this.Btn_VisualizarVendas.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.Btn_VisualizarVendas.Size = new System.Drawing.Size(200, 40);
-            this.Btn_VisualizarVendas.TabIndex = 1;
-            this.Btn_VisualizarVendas.Text = "Visualizar Vendas";
-            this.Btn_VisualizarVendas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_VisualizarVendas.UseVisualStyleBackColor = true;
             // 
             // Btn_CadastroDeVendas
             // 
@@ -220,7 +199,7 @@ namespace Order
             this.Btn_Vendas.ForeColor = System.Drawing.Color.White;
             this.Btn_Vendas.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Vendas.Image")));
             this.Btn_Vendas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Vendas.Location = new System.Drawing.Point(0, 354);
+            this.Btn_Vendas.Location = new System.Drawing.Point(0, 269);
             this.Btn_Vendas.Name = "Btn_Vendas";
             this.Btn_Vendas.Size = new System.Drawing.Size(200, 40);
             this.Btn_Vendas.TabIndex = 8;
@@ -230,30 +209,12 @@ namespace Order
             // Painel_SubMenuProdutos
             // 
             this.Painel_SubMenuProdutos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.Painel_SubMenuProdutos.Controls.Add(this.Btn_VisualizarProdutos);
             this.Painel_SubMenuProdutos.Controls.Add(this.Btn_CadastroDeProdutos);
             this.Painel_SubMenuProdutos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Painel_SubMenuProdutos.Location = new System.Drawing.Point(0, 267);
+            this.Painel_SubMenuProdutos.Location = new System.Drawing.Point(0, 223);
             this.Painel_SubMenuProdutos.Name = "Painel_SubMenuProdutos";
-            this.Painel_SubMenuProdutos.Size = new System.Drawing.Size(200, 87);
+            this.Painel_SubMenuProdutos.Size = new System.Drawing.Size(200, 46);
             this.Painel_SubMenuProdutos.TabIndex = 4;
-            // 
-            // Btn_VisualizarProdutos
-            // 
-            this.Btn_VisualizarProdutos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Btn_VisualizarProdutos.FlatAppearance.BorderSize = 0;
-            this.Btn_VisualizarProdutos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.Btn_VisualizarProdutos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.Btn_VisualizarProdutos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_VisualizarProdutos.ForeColor = System.Drawing.Color.Silver;
-            this.Btn_VisualizarProdutos.Location = new System.Drawing.Point(0, 40);
-            this.Btn_VisualizarProdutos.Name = "Btn_VisualizarProdutos";
-            this.Btn_VisualizarProdutos.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.Btn_VisualizarProdutos.Size = new System.Drawing.Size(200, 40);
-            this.Btn_VisualizarProdutos.TabIndex = 1;
-            this.Btn_VisualizarProdutos.Text = "Visualizar Produtos";
-            this.Btn_VisualizarProdutos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_VisualizarProdutos.UseVisualStyleBackColor = true;
             // 
             // Btn_CadastroDeProdutos
             // 
@@ -285,7 +246,7 @@ namespace Order
             this.Btn_Produtos.ForeColor = System.Drawing.Color.White;
             this.Btn_Produtos.Image = ((System.Drawing.Image)(resources.GetObject("Btn_Produtos.Image")));
             this.Btn_Produtos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_Produtos.Location = new System.Drawing.Point(0, 227);
+            this.Btn_Produtos.Location = new System.Drawing.Point(0, 183);
             this.Btn_Produtos.Name = "Btn_Produtos";
             this.Btn_Produtos.Size = new System.Drawing.Size(200, 40);
             this.Btn_Produtos.TabIndex = 7;
@@ -295,30 +256,12 @@ namespace Order
             // Painel_SubMenuClientes
             // 
             this.Painel_SubMenuClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.Painel_SubMenuClientes.Controls.Add(this.Btn_VisualizarClientes);
             this.Painel_SubMenuClientes.Controls.Add(this.Btn_CadastroDeClientes);
             this.Painel_SubMenuClientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.Painel_SubMenuClientes.Location = new System.Drawing.Point(0, 140);
             this.Painel_SubMenuClientes.Name = "Painel_SubMenuClientes";
-            this.Painel_SubMenuClientes.Size = new System.Drawing.Size(200, 87);
+            this.Painel_SubMenuClientes.Size = new System.Drawing.Size(200, 43);
             this.Painel_SubMenuClientes.TabIndex = 3;
-            // 
-            // Btn_VisualizarClientes
-            // 
-            this.Btn_VisualizarClientes.Dock = System.Windows.Forms.DockStyle.Top;
-            this.Btn_VisualizarClientes.FlatAppearance.BorderSize = 0;
-            this.Btn_VisualizarClientes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.Btn_VisualizarClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(38)))), ((int)(((byte)(46)))));
-            this.Btn_VisualizarClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Btn_VisualizarClientes.ForeColor = System.Drawing.Color.Silver;
-            this.Btn_VisualizarClientes.Location = new System.Drawing.Point(0, 40);
-            this.Btn_VisualizarClientes.Name = "Btn_VisualizarClientes";
-            this.Btn_VisualizarClientes.Padding = new System.Windows.Forms.Padding(35, 0, 0, 0);
-            this.Btn_VisualizarClientes.Size = new System.Drawing.Size(200, 40);
-            this.Btn_VisualizarClientes.TabIndex = 1;
-            this.Btn_VisualizarClientes.Text = "Visualizar Clientes";
-            this.Btn_VisualizarClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.Btn_VisualizarClientes.UseVisualStyleBackColor = true;
             // 
             // Btn_CadastroDeClientes
             // 
@@ -429,15 +372,12 @@ namespace Order
         private System.Windows.Forms.Button Btn_Clientes;
         private System.Windows.Forms.PictureBox btnsalir;
         private System.Windows.Forms.Panel Painel_SubMenuVendas;
-        private System.Windows.Forms.Button Btn_VisualizarVendas;
         private System.Windows.Forms.Button Btn_CadastroDeVendas;
         private System.Windows.Forms.Button Btn_Vendas;
         private System.Windows.Forms.Panel Painel_SubMenuProdutos;
-        private System.Windows.Forms.Button Btn_VisualizarProdutos;
         private System.Windows.Forms.Button Btn_CadastroDeProdutos;
         private System.Windows.Forms.Button Btn_Produtos;
         private System.Windows.Forms.Panel Painel_SubMenuClientes;
-        private System.Windows.Forms.Button Btn_VisualizarClientes;
         private System.Windows.Forms.Button Btn_CadastroDeClientes;
         private System.Windows.Forms.PictureBox Btn_Inicio;
     }

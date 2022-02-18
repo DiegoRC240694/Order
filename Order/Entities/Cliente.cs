@@ -142,7 +142,7 @@ namespace Order
              '{Pessoa.Idade}',
              '{Pessoa.Cpf}',
              '{Pessoa.Email}',
-            '{RegistroDataHora::yyyy-MM-dd HH:mm:ss}')";
+            '{RegistroDataHora:yyyy-MM-dd HH:mm:ss}')";
                 return SQL;
          
         }

@@ -39,8 +39,8 @@ namespace Order
             this.btn_Salvar = new System.Windows.Forms.Button();
             this.Btn_Apagar = new System.Windows.Forms.Button();
             this.Btn_Limpar = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.Dg_Produtos = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.Dg_Produtos)).BeginInit();
             this.SuspendLayout();
             // 
             // Lbl_DescricaoDoProduto
@@ -126,7 +126,7 @@ namespace Order
             this.Btn_Apagar.TabIndex = 9;
             this.Btn_Apagar.Text = "Apagar";
             this.Btn_Apagar.UseVisualStyleBackColor = true;
-            this.Btn_Apagar.Click += new System.EventHandler(this.Btn_VisualizarProdutos_Click);
+            this.Btn_Apagar.Click += new System.EventHandler(this.Btn_Apagar_Click);
             // 
             // Btn_Limpar
             // 
@@ -136,19 +136,23 @@ namespace Order
             this.Btn_Limpar.TabIndex = 10;
             this.Btn_Limpar.Text = "Limpar";
             this.Btn_Limpar.UseVisualStyleBackColor = true;
+            this.Btn_Limpar.Click += new System.EventHandler(this.Btn_Limpar_Click);
             // 
-            // dataGridView1
+            // Dg_Produtos
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 142);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(770, 295);
-            this.dataGridView1.TabIndex = 11;
+            this.Dg_Produtos.AllowUserToAddRows = false;
+            this.Dg_Produtos.AllowUserToDeleteRows = false;
+            this.Dg_Produtos.AllowUserToOrderColumns = true;
+            this.Dg_Produtos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.Dg_Produtos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Dg_Produtos.Location = new System.Drawing.Point(12, 142);
+            this.Dg_Produtos.MultiSelect = false;
+            this.Dg_Produtos.Name = "Dg_Produtos";
+            this.Dg_Produtos.ReadOnly = true;
+            this.Dg_Produtos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.Dg_Produtos.Size = new System.Drawing.Size(770, 295);
+            this.Dg_Produtos.TabIndex = 11;
+            this.Dg_Produtos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Dg_Produtos_CellClick);
             // 
             // Frm_CadastroDeProduto
             // 
@@ -156,7 +160,7 @@ namespace Order
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
             this.ClientSize = new System.Drawing.Size(794, 449);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.Dg_Produtos);
             this.Controls.Add(this.Btn_Limpar);
             this.Controls.Add(this.Btn_Apagar);
             this.Controls.Add(this.btn_Salvar);
@@ -170,7 +174,8 @@ namespace Order
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Frm_CadastroDeProduto";
             this.Text = "Frm_CadastroDeProduto";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.Frm_CadastroDeProduto_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Dg_Produtos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,6 +193,6 @@ namespace Order
         private System.Windows.Forms.Button btn_Salvar;
         private System.Windows.Forms.Button Btn_Apagar;
         private System.Windows.Forms.Button Btn_Limpar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView Dg_Produtos;
     }
 }

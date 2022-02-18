@@ -41,11 +41,11 @@ namespace Order
             // 
             this.Lbl_Questão.AutoSize = true;
             this.Lbl_Questão.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.Lbl_Questão.Location = new System.Drawing.Point(26, 9);
+            this.Lbl_Questão.Location = new System.Drawing.Point(69, 9);
             this.Lbl_Questão.Name = "Lbl_Questão";
-            this.Lbl_Questão.Size = new System.Drawing.Size(230, 20);
+            this.Lbl_Questão.Size = new System.Drawing.Size(131, 20);
             this.Lbl_Questão.TabIndex = 2;
-            this.Lbl_Questão.Text = "Você quer excluir o cliente?";
+            this.Lbl_Questão.Text = "Deseja excluir?";
             // 
             // Btm_OK
             // 
